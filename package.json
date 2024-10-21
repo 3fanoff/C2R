@@ -1,0 +1,23 @@
+{
+  "name": "c2r_logistics",
+  "version": "1.0.0",
+  "description": "bootstrap template for C2R logistics",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "prod": "vite build",
+    "prev": "vite preview",
+    "dev": "vite"
+  },
+  "author": "Michael Trifanov",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.3.3"
+  },
+  "devDependencies": {
+    "node-sass-alias-importer": "^2.0.4",
+    "sass": "^1.78.0",
+    "vite": "^5.4.6",
+    "vite-plugin-handlebars": "^2.0.0"
+  }
+}

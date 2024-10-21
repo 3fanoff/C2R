@@ -1,0 +1,112 @@
+@use "sass:math";
+
+$primary:       #001022;
+$secondary:     #04386E;
+$tertiary:      #022244;
+$quaternary:    #0A519E;
+$quinary:       #0000EE;
+$accent:        #1183D3;
+$dark:          #000;
+$success:       #FA4D00;
+$light:         #DDE4EC;
+
+$link-color:    $success;
+
+$gray-900: #212529;
+$body-color:                #FFF;
+$body-bg: $secondary;
+
+$font-family-sans-serif:  Roboto, "Helvetica Neue", "Noto Sans", system-ui, -apple-system, "Segoe UI", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
+
+$theme-colors: (
+        "primary":    $primary,
+        "secondary":  $secondary,
+        "tertiary":   $tertiary,
+        "quaternary": $quaternary,
+        "quinary":    $quinary,
+        "accent":     $accent,
+        "success":    $success,
+        "dark":       $dark,
+        "light":      $light,
+);
+
+$prefix:                      bs-;
+
+$grid-breakpoints: (
+        xs: 0,
+        sm: 768px,
+        md: 1024px,
+);
+$container-max-widths: (
+        md: 1170px,
+);
+$grid-columns:                18;
+$grid-gutter-width:           2rem;
+$grid-row-columns:            6;
+
+$spacer: 1rem;
+$spacers: (
+        0: 0,
+        1: $spacer * .25,
+        2: $spacer * .5,
+        3: $spacer * .75,
+        4: $spacer,
+        5: $spacer * 1.5,
+        6: $spacer * 2,
+        7: $spacer * 2.5,
+        8: $spacer * 3,
+);
+
+
+@import "~bootstrap/scss/mixins/banner";
+@include bsBanner("");
+
+// scss-docs-start import-stack
+// Configuration
+
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/variables-dark";
+@import "~bootstrap/scss/maps";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/utilities";
+
+// Layout & components
+@import "~bootstrap/scss/root";
+@import "~bootstrap/scss/reboot";
+@import "~bootstrap/scss/type";
+@import "~bootstrap/scss/images";
+@import "~bootstrap/scss/containers";
+@import "~bootstrap/scss/grid";
+@import "~bootstrap/scss/tables";
+@import "~bootstrap/scss/forms";
+@import "~bootstrap/scss/buttons";
+@import "~bootstrap/scss/transitions";
+@import "~bootstrap/scss/dropdown";
+@import "~bootstrap/scss/button-group";
+@import "~bootstrap/scss/nav";
+@import "~bootstrap/scss/navbar";
+@import "~bootstrap/scss/card";
+@import "~bootstrap/scss/accordion";
+@import "~bootstrap/scss/breadcrumb";
+@import "~bootstrap/scss/pagination";
+@import "~bootstrap/scss/badge";
+@import "~bootstrap/scss/alert";
+@import "~bootstrap/scss/progress";
+@import "~bootstrap/scss/list-group";
+@import "~bootstrap/scss/close";
+@import "~bootstrap/scss/toasts";
+@import "~bootstrap/scss/modal";
+@import "~bootstrap/scss/tooltip";
+@import "~bootstrap/scss/popover";
+@import "~bootstrap/scss/carousel";
+@import "~bootstrap/scss/spinners";
+@import "~bootstrap/scss/offcanvas";
+@import "~bootstrap/scss/placeholders";
+
+// Helpers
+@import "~bootstrap/scss/helpers";
+
+// Utilities
+@import "~bootstrap/scss/utilities/api";
+// scss-docs-end import-stack
