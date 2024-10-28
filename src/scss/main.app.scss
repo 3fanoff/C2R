@@ -1,22 +1,30 @@
 @use "sass:math";
 
-$primary:       #001022;
-$secondary:     #04386E;
-$tertiary:      #022244;
-$quaternary:    #0A519E;
+$cs-breakpoint-xs: 0;
+$cs-breakpoint-sm: 640;
+$cs-breakpoint-md: 960;
+$cs-breakpoint-lg: 1200;
+
+
+$primary:       #1a75bb;
+$secondary:     #d60628;
+$tertiary:      #fcfcfc;
+$quaternary:    #1b2340;
+$light:         #fcfcfc;
+$success:       #ed6b2a;
+$dark:          #1b2340;
+
 $quinary:       #0000EE;
 $accent:        #1183D3;
-$dark:          #000;
-$success:       #FA4D00;
-$light:         #DDE4EC;
 
-$link-color:    $success;
+
+//$link-color:    $success;
 
 $gray-900: #212529;
-$body-color:                #FFF;
-$body-bg: $secondary;
+$body-color: $quaternary;
+$body-bg: $tertiary;
 
-$font-family-sans-serif:  Roboto, "Helvetica Neue", "Noto Sans", system-ui, -apple-system, "Segoe UI", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
+$font-family-sans-serif:  'Montserrat', Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
 
 $theme-colors: (
         "primary":    $primary,
@@ -33,16 +41,17 @@ $theme-colors: (
 $prefix:                      bs-;
 
 $grid-breakpoints: (
-        xs: 0,
-        sm: 768px,
-        md: 1024px,
+        xs: $cs-breakpoint-xs,
+        sm: $cs-breakpoint-sm * 1px,
+        md: $cs-breakpoint-md * 1px,
+        lg: $cs-breakpoint-lg * 1px,
 );
 $container-max-widths: (
         md: 1170px,
 );
-$grid-columns:                18;
+$grid-columns:                8;
 $grid-gutter-width:           2rem;
-$grid-row-columns:            6;
+$grid-row-columns:            4;
 
 $spacer: 1rem;
 $spacers: (
@@ -57,6 +66,34 @@ $spacers: (
         8: $spacer * 3,
 );
 
+$headings-font-weight:        700;
+$headings-line-height:        1.1;
+
+$btn-padding-y:               #{math.div(15, 16)}rem;
+$btn-padding-x:               1rem;
+$btn-font-size:               #{math.div(14, 16)}rem; //14px
+
+$btn-padding-y-sm:            #{math.div(12, 16)}rem;
+$btn-padding-x-sm:            1rem;
+$btn-font-size-sm:            $btn-font-size;
+
+$btn-padding-y-lg:            #{math.div(21, 16)}rem;
+$btn-padding-x-lg:            1rem;
+//$btn-font-size-lg:            #{math.div(12, 16)}rem;
+$btn-font-size-lg:            $btn-font-size;
+
+$btn-line-height: 1;
+$btn-font-weight:             600;
+
+$btn-border-radius:           #{math.div(6, 16)}rem;
+$btn-border-radius-sm:        $btn-border-radius;
+$btn-border-radius-lg:        $btn-border-radius;
+
+$badge-font-size:     .5em;
+$badge-font-weight:   600;
+$badge-border-radius: 50rem;
+$badge-padding-y:     .6em;
+$badge-padding-x:     1em;
 
 @import "~bootstrap/scss/mixins/banner";
 @include bsBanner("");
@@ -91,6 +128,10 @@ $spacers: (
 @import "~bootstrap/scss/breadcrumb";
 @import "~bootstrap/scss/pagination";
 @import "~bootstrap/scss/badge";
+.badge {
+  display: table;
+}
+
 @import "~bootstrap/scss/alert";
 @import "~bootstrap/scss/progress";
 @import "~bootstrap/scss/list-group";
@@ -110,3 +151,32 @@ $spacers: (
 // Utilities
 @import "~bootstrap/scss/utilities/api";
 // scss-docs-end import-stack
+
+:root {
+  --cs-breakpoint-max: #{$cs-breakpoint-sm - 1};
+  @include media-breakpoint-up(sm) {
+    --cs-breakpoint-max: #{$cs-breakpoint-md - 1};
+  }
+  @include media-breakpoint-up(md) {
+    --cs-breakpoint-max: #{$cs-breakpoint-lg - 1};
+  }
+}
+
+@import "block/main-card";
+@import "block/transport-box";
+@import "block/iconed-list";
+@import "block/quote-box";
+@import "block/nums-map";
+@import "block/insta-box";
+@import "block/phrases-box";
+@import "block/articles";
+
+@keyframes scroll-x-to-left {
+  0% {
+    transform: translateX(0);
+    animation-timing-function: linear;
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}

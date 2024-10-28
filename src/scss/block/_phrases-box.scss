@@ -1,0 +1,23 @@
+.phrases-box {
+    overflow: hidden;
+
+    &-list {
+        white-space: nowrap;
+        animation: scroll-x-to-left 50s infinite linear;
+        margin-bottom: 0;
+
+        &.reverse {
+            animation-direction: reverse;
+        }
+
+        &__item {
+            --bs-btn-border-width: 2px;
+            --bs-btn-padding-y: .665rem;
+            --bs-btn-padding-x: 2rem;
+            --bs-btn-font-size: .8em;
+
+            text-transform: uppercase;
+            pointer-events: none;
+        }
+    }
+}

@@ -2,7 +2,7 @@ import {resolve} from 'path';
 import aliasImporter from 'node-sass-alias-importer';
 import handlebars from 'vite-plugin-handlebars';
 
-console.log(process.env);
+//console.log(process.env);
 const basePath =  process.env.GITHUB_PAGES_BASE_PATH ?? '/';
 
 export default {
@@ -25,6 +25,7 @@ export default {
             "~bootstrap": resolve(__dirname, 'node_modules/bootstrap'),
             //"~flag-icons": resolve(__dirname, 'node_modules/flag-icons'),
             "@fonts": resolve(__dirname, 'src/fonts'),
+            "@images": resolve(__dirname, 'src/images'),
           })
         ]
       }
@@ -34,12 +35,14 @@ export default {
     alias: {
       '@scss': resolve(__dirname, 'src/scss'),
       '@fonts': resolve(__dirname, 'src/fonts'),
+      '@images': resolve(__dirname, 'src/images')
     }
   },
   plugins: [
     handlebars({
       context: {
         title: 'C2R Logistics template',
+        iter2: [1, 2],
       },
       partialDirectory: resolve(__dirname, 'src/html/fragment'),
       reloadOnPartialChange: true

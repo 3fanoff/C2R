@@ -1,0 +1,150 @@
+.quote-box {
+    --cs-quote-base-font-size: 1em;
+    --cs-quote-text-font-size: 1.5em;
+    --cs-quote-author-font-size: 1.4em;
+    --cs-quote-icon-width: 4em;
+
+    border-radius: 30px;
+    font-size: calc(var(--cs-quote-base-font-size) * (var(--view-width) / var(--cs-breakpoint-max)));
+    padding: 1.4em;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    &__img {
+        width: 30.5vw;
+        height: 30.5vw;
+        overflow: hidden;
+        border-radius: 24px;
+        flex-shrink: 0;
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    &__author {
+        font-size: var(--cs-quote-author-font-size);
+
+        &-desc {
+            padding: 5px 0;
+            opacity: .8;
+            font-size: .9em;
+            font-weight: 500;
+            line-height: 1.3;
+        }
+    }
+
+    &__text {
+        font-size: var(--cs-quote-text-font-size);
+        line-height: 1.3;
+        font-weight: 500;
+        margin-top: 1em;
+        position: relative;
+        z-index: 1;
+
+        &::before {
+            content: "";
+            background-image: url("@images/quotes.svg");
+            background-size: contain;
+            width: var(--cs-quote-icon-width);
+            height: var(--cs-quote-icon-width);
+            position: absolute;
+            right: 0;
+            top: -2.5em;
+            z-index: -1;
+        }
+    }
+
+    @include media-breakpoint-up(sm) {
+        --cs-quote-text-font-size: 1.4em;
+        --cs-quote-author-font-size: 1.2em;
+        --cs-quote-icon-width: 3em;
+
+        padding-left: calc(30.5vw + 1.4em * 2);
+
+        &__img {
+            position: absolute;
+            left: 1.4em;
+            top: 1.4em;
+            bottom: 1.4em;
+            display: flex;
+            justify-content: center;
+            height: auto;
+
+            img {
+                width: auto;
+                height: 100%;
+            }
+        }
+
+        &__text {
+            line-height: 1.4;
+            margin-top: 0;
+            padding-top: 4em;
+
+            &:before {
+                right: auto;
+                left: 0;
+                top: 0;
+            }
+        }
+
+        &__author {
+            &-desc {
+                padding: 0 0 1.2rem;
+            }
+        }
+    }
+
+    @include media-breakpoint-up(md) {
+        --cs-quote-text-font-size: 1.1em;
+        --cs-quote-author-font-size: 1em;
+        --cs-quote-icon-width: 5em;
+
+        padding-right: 3em;
+
+        &__img {
+            width: auto;
+            transform: translateY(-3em);
+            max-width: 25vw;
+            top: 0;
+            bottom: 0;
+            left: 2.5em;
+        }
+
+        &__text {
+            padding-top: 6em;
+        }
+
+        &__author {
+            padding-top: 2em;
+            padding-bottom: 1em;
+
+            &-desc {
+                padding-top: .35em;
+            }
+        }
+    }
+
+    @include media-breakpoint-up(lg) {
+        --cs-quote-base-font-size: .85em;
+
+        padding-left: calc(25vw + 3em);
+
+        &__img {
+            max-width: 20vw;
+            bottom: -1em;
+            left: 3em;
+        }
+
+        &__author {
+            padding-top: .8em;
+
+            &-desc {
+                padding-top: 0;
+            }
+        }
+    }
+}

@@ -1,0 +1,17 @@
+@use "sass:math";
+
+.iconed-list-item {
+    &__head {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        margin-bottom: 1rem;
+        line-height: 1.35;
+        gap: 1.2em;
+    }
+
+    &__desc {
+        line-height: 1.55;
+        font-size: #{math.div(13, 16)}rem;
+    }
+}

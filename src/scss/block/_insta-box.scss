@@ -1,0 +1,36 @@
+.insta-box {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(5, calc(50vw - var(--bs-gutter-x) / 2 - 6px));
+    gap: 12px;
+    grid-auto-flow: row;
+
+    .item-1, .item-6 {
+        grid-row: span 2;
+    }
+
+    &__item {
+        background-size: cover;
+        background-position: center;
+        border-radius: 1em;
+    }
+
+    @include media-breakpoint-only(sm) {
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: repeat(4, calc((100vw - var(--bs-gutter-x)) / 3 - 6px));
+        grid-auto-flow: row;
+
+        .item-1, .item-2, .item-3, .item-4, .item-5 {
+            grid-column: span 2;
+        }
+        .item-6, .item-7, .item-8 {
+            grid-column: span 3;
+        }
+    }
+
+    @include media-breakpoint-up(md) {
+        grid-template-columns: 19vw 19vw 19vw 22vw auto;
+        grid-template-rows: 19vw 19vw;
+        grid-auto-flow: column;
+    }
+}

@@ -1,0 +1,120 @@
+.nums-map {
+    font-size: calc(1.5em * (var(--view-width) / var(--cs-breakpoint-max)));
+    //position: relative;
+    max-width: 1100px;
+
+    h2 {
+        font-size: 1.8em;
+        margin-bottom: .5em;
+    }
+
+    &__badge {
+        --bs-badge-font-size: .9em;
+        text-transform: uppercase;
+        white-space: pre-wrap;
+        min-height: 3em;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__badges {
+        position: relative;
+    }
+
+    &__img {
+        width: 100%;
+        height: auto;
+    }
+
+    &__desc {
+        opacity: 0.6;
+        font-weight: 500;
+        margin-bottom: 2em;
+    }
+
+
+    @include media-breakpoint-up(sm) {
+        font-size: 1.2em;
+
+        &__list {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        &__badge {
+            --bs-badge-font-size: .66em;
+            position: absolute;
+            min-height: auto;
+            white-space: nowrap;
+        }
+
+        &__badge:nth-child(1) {
+            top: 80%;
+            left: 5%;
+        }
+        &__badge:nth-child(2) {
+            top: 12%;
+            left: 18%;
+        }
+        &__badge:nth-child(3) {
+            top: 53%;
+            left: 10%;
+        }
+        &__badge:nth-child(4) {
+            top: 20%;
+            left: 63%;
+        }
+        &__badge:nth-child(5) {
+            top: 55%;
+            left: 54%;
+        }
+
+        &__desc {
+            max-width: 70%;
+        }
+    }
+
+    @include media-breakpoint-up(md) {
+        &__badge {
+            position: absolute;
+        }
+
+        &__badges {
+            margin-top: -1em;
+            margin-bottom: -2em;
+        }
+
+        &__badge:nth-child(1) {
+            top: 15%;
+            right: 3%;
+            left: auto;
+        }
+        &__badge:nth-child(2) {
+            top: 30%;
+            left: 7%;
+        }
+        &__badge:nth-child(3) {
+            top: 40%;
+            left: 45%;
+        }
+        &__badge:nth-child(4) {
+            top: 43%;
+            left: 72%;
+        }
+        &__badge:nth-child(5) {
+            top: 65%;
+            left: 44%;
+        }
+
+        &__desc {
+            max-width: 60%;
+            font-size: .9em;
+            line-height: 1.3;
+        }
+    }
+}

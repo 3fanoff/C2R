@@ -4,6 +4,9 @@
     "paths": {
       "@scss/*": [
         "src/scss/*"
+      ],
+      "@images/*": [
+        "src/images/*"
       ]
     }
   }
