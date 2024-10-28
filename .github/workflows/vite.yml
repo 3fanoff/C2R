@@ -27,7 +27,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     env:
-      GITHUB_PAGES_BASE_PATH: "/logistics/"
+      GITHUB_PAGES_BASE_PATH: "/C2R/"
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
