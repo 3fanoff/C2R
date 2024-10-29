@@ -84,6 +84,7 @@
         background-repeat: no-repeat;
         background-size: contain;
         background-position: center;
+        padding-bottom: 80%;
         /*margin: auto;
        img {
          width: 100%;
@@ -140,6 +141,10 @@
         min-height: auto;
         height: 110vw;
         padding: 6% 5vw 5vw;
+
+        &__img {
+            padding-bottom: 0;
+        }
 
         &__title {
             font-size: 3.2em;
