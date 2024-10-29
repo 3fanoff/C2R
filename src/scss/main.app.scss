@@ -46,8 +46,11 @@ $grid-breakpoints: (
         md: $cs-breakpoint-md * 1px,
         lg: $cs-breakpoint-lg * 1px,
 );
+
 $container-max-widths: (
-        md: 1170px,
+        sm: 510px,
+        md: 972px,
+        lg: 1192px,
 );
 $grid-columns:                8;
 $grid-gutter-width:           2rem;
@@ -66,6 +69,8 @@ $spacers: (
         8: $spacer * 3,
 );
 
+$small-font-size:             #{math.div(11, 16)}rem;
+
 $headings-font-weight:        700;
 $headings-line-height:        1.1;
 
@@ -77,7 +82,7 @@ $btn-padding-y-sm:            #{math.div(12, 16)}rem;
 $btn-padding-x-sm:            1rem;
 $btn-font-size-sm:            $btn-font-size;
 
-$btn-padding-y-lg:            #{math.div(21, 16)}rem;
+$btn-padding-y-lg:            #{math.div(17, 16)}rem;
 $btn-padding-x-lg:            1rem;
 //$btn-font-size-lg:            #{math.div(12, 16)}rem;
 $btn-font-size-lg:            $btn-font-size;
@@ -89,11 +94,22 @@ $btn-border-radius:           #{math.div(6, 16)}rem;
 $btn-border-radius-sm:        $btn-border-radius;
 $btn-border-radius-lg:        $btn-border-radius;
 
+$input-border-color: $dark;
+$input-font-size-lg:                    1rem;
+$input-btn-padding-y-lg:      .75rem;
+
+$icon-link-gap:               .5rem;
+
 $badge-font-size:     .5em;
 $badge-font-weight:   600;
 $badge-border-radius: 50rem;
 $badge-padding-y:     .6em;
 $badge-padding-x:     1em;
+
+$carousel-control-color:             $dark;
+$carousel-control-opacity: 1;
+$carousel-control-width:             auto;
+$carousel-control-icon-width:        #{math.div(40, 16)}rem;
 
 @import "~bootstrap/scss/mixins/banner";
 @include bsBanner("");
@@ -141,6 +157,28 @@ $badge-padding-x:     1em;
 @import "~bootstrap/scss/tooltip";
 @import "~bootstrap/scss/popover";
 @import "~bootstrap/scss/carousel";
+.carousel-control-prev,
+.carousel-control-next {
+  top: calc(50% - $carousel-control-icon-width/2);
+  bottom: auto;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: $light;
+  border-radius: 50rem;
+  background-size: 50%;
+}
+
+@include media-breakpoint-up(md) {
+  .carousel-control-prev {
+    margin-left: -3rem;
+  }
+  .carousel-control-next {
+    margin-right: -3rem;
+  }
+}
+
 @import "~bootstrap/scss/spinners";
 @import "~bootstrap/scss/offcanvas";
 @import "~bootstrap/scss/placeholders";
@@ -162,6 +200,7 @@ $badge-padding-x:     1em;
   }
 }
 
+@import "block/carousel";
 @import "block/main-card";
 @import "block/transport-box";
 @import "block/iconed-list";
@@ -170,6 +209,8 @@ $badge-padding-x:     1em;
 @import "block/insta-box";
 @import "block/phrases-box";
 @import "block/articles";
+@import "block/social-box";
+@import "block/contact-box";
 
 @keyframes scroll-x-to-left {
   0% {
