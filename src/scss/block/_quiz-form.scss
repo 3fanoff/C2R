@@ -1,0 +1,29 @@
+@use "sass:math";
+
+.quiz-form {
+    border-radius: 20px;
+    padding: 1.5rem;
+    box-shadow: 0 0 10px rgba(0,0,0,.3);
+
+    &__step {
+        font-size: #{math.div(18, 16)}rem;
+        font-weight: 700;
+
+        span:last-child {
+            font-size: #{math.div(24, 16)}rem;
+            font-weight: 500;
+        }
+    }
+
+    label {
+        font-size: #{math.div(18, 16)}rem;
+    }
+
+    .form-control-no-bg::placeholder {
+        color: rgba($light, .6);
+    }
+
+    @include media-breakpoint-up(sm) {
+        padding: 2rem 2.5rem;
+    }
+}

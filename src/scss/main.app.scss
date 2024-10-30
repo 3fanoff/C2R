@@ -58,7 +58,7 @@ $grid-row-columns:            4;
 
 $spacer: 1rem;
 $spacers: (
-        0: 0,
+        0: 0px,
         1: $spacer * .25,
         2: $spacer * .5,
         3: $spacer * .75,
@@ -83,7 +83,7 @@ $btn-padding-x-sm:            1rem;
 $btn-font-size-sm:            $btn-font-size;
 
 $btn-padding-y-lg:            #{math.div(17, 16)}rem;
-$btn-padding-x-lg:            1rem;
+$btn-padding-x-lg:            1.5rem;
 //$btn-font-size-lg:            #{math.div(12, 16)}rem;
 $btn-font-size-lg:            $btn-font-size;
 
@@ -97,8 +97,13 @@ $btn-border-radius-lg:        $btn-border-radius;
 $input-border-color: $dark;
 $input-font-size-lg:                    1rem;
 $input-btn-padding-y-lg:      .75rem;
+$input-placeholder-color:      rgba($dark, .6);
 
 $icon-link-gap:               .5rem;
+
+//$form-select-indicator: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' fill='#000000' viewBox='0 0 24 24'><path d='M6.5,8.5l6,7l6-7H6.5z'/></svg>");
+$form-select-indicator: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#FFF'><polygon points='8,11 3,6 13,6'/></svg>");//fill='transparent' filter='invert(100%)'
+$form-select-bg-size: 16px 16px;
 
 $badge-font-size:     .5em;
 $badge-font-weight:   600;
@@ -110,6 +115,8 @@ $carousel-control-color:             $dark;
 $carousel-control-opacity: 1;
 $carousel-control-width:             auto;
 $carousel-control-icon-width:        #{math.div(40, 16)}rem;
+
+$progress-border-radius:            50rem;
 
 @import "~bootstrap/scss/mixins/banner";
 @include bsBanner("");
@@ -127,13 +134,69 @@ $carousel-control-icon-width:        #{math.div(40, 16)}rem;
 // Layout & components
 @import "~bootstrap/scss/root";
 @import "~bootstrap/scss/reboot";
+body {
+  overflow-x: hidden;
+}
 @import "~bootstrap/scss/type";
 @import "~bootstrap/scss/images";
 @import "~bootstrap/scss/containers";
 @import "~bootstrap/scss/grid";
 @import "~bootstrap/scss/tables";
 @import "~bootstrap/scss/forms";
+
+.form-select-no-bg {
+  $form-select-bg:                    transparent;
+  $form-select-border-width: 1px;
+  $form-select-border-color: #b3b3b3;
+  $form-select-padding-x: 0;
+  $form-select-padding-x-lg: 0;
+  $form-select-focus-border-color: transparent;
+  $form-select-bg-position:           right $form-select-padding-x center;
+  //--#{$prefix}form-select-bg-img: #{escape-svg($form-select-indicator)};
+
+  padding: $form-select-padding-y $form-select-indicator-padding $form-select-padding-y $form-select-padding-x;
+  background-color: $form-select-bg;
+  background-size: $form-select-bg-size;
+  background-position: $form-select-bg-position;
+  border-color: transparent;
+  border-width: $form-select-border-width;
+  border-bottom: $form-select-border-width solid $form-select-border-color;
+  border-radius: 0;
+
+  &:focus {
+    border-color: transparent;
+    border-bottom: $form-select-border-width solid $form-select-border-color;
+  }
+
+  &.form-select-lg {
+    padding-top: $form-select-padding-y-lg;
+    padding-bottom: $form-select-padding-y-lg;
+    padding-left: $form-select-padding-x-lg;
+    border-radius: 0;
+  }
+}
+
+.form-control-no-bg {
+  $input-border-color: #b3b3b3;
+  $input-padding-x: 0;
+
+  padding: $input-padding-y $input-padding-x;
+  background-color: transparent;
+  border-color: transparent;
+  border-bottom: $input-border-width solid $input-border-color;
+  border-radius: 0;
+
+  &:focus {
+    background-color: transparent;
+    border-color: transparent;
+    border-bottom: $input-border-width solid $input-border-color;
+  }
+
+
+}
+
 @import "~bootstrap/scss/buttons";
+
 @import "~bootstrap/scss/transitions";
 @import "~bootstrap/scss/dropdown";
 @import "~bootstrap/scss/button-group";
@@ -150,6 +213,10 @@ $carousel-control-icon-width:        #{math.div(40, 16)}rem;
 
 @import "~bootstrap/scss/alert";
 @import "~bootstrap/scss/progress";
+.progress-bar {
+  border-radius: var(--#{$prefix}progress-border-radius);
+}
+
 @import "~bootstrap/scss/list-group";
 @import "~bootstrap/scss/close";
 @import "~bootstrap/scss/toasts";
@@ -211,6 +278,23 @@ $carousel-control-icon-width:        #{math.div(40, 16)}rem;
 @import "block/articles";
 @import "block/social-box";
 @import "block/contact-box";
+@import "block/quiz-form";
+@import "block/info-card";
+@import "block/features-box";
+
+.icon-prev:before, .icon-next:before {
+  position: relative;
+  font-size: 1.125rem;
+  font-style: normal;
+  line-height: 0;
+}
+.icon-next:before {
+  content: " →";
+}
+.icon-prev:before {
+  content: "← ";
+}
+
 
 @keyframes scroll-x-to-left {
   0% {

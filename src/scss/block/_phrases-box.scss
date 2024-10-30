@@ -18,6 +18,24 @@
 
             text-transform: uppercase;
             pointer-events: none;
+            position: relative;
+
+            &.btn-link {
+                --bs-link-color: #{$light};
+                --bs-btn-font-size: 1.2em;
+                --bs-btn-font-weight: 600;
+                --bs-btn-padding-x: 1rem;
+
+                text-decoration: none;
+
+                &:after {
+                    content: "/";
+                    position: absolute;
+                    right: 0;
+                    transform: skew(-30deg, 0) translateX(.5rem) scale(0.8);
+                    font-weight: 500;
+                }
+            }
         }
     }
 }

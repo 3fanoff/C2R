@@ -29,6 +29,7 @@
 				<button class="btn btn-secondary btn-lg w-100 d-sm-none">Сделать расчет доставки за 10 минут</button>
 			</div>
 		</div>
+		{{> phrases-box-main-line}}
 		<div class="container-fluid py-3">
 			{{> transport-box}}
 		</div>
@@ -40,6 +41,9 @@
 		</div>
 		<div class="container-fluid py-3">
 			{{> nums-map}}
+		</div>
+		<div class="container-sm py-3">
+			{{> quiz-form}}
 		</div>
 		<div class="container-fluid py-3">
 			<section class="insta-box">
@@ -57,15 +61,21 @@
 		<div class="container-fluid articles-oversize py-3">
 			{{> articles}}
 		</div>
-
 		<div class="container-fluid py-3">
 			{{> social-box}}
 		</div>
 		{{> articles-carousel}}
-
 		<div class="container-fluid bg-dark py-6">
 			{{> contact-box}}
 		</div>
+		<div class="container-fluid py-6">
+			{{> info-card-list}}
+		</div>
+		<div class="container-fluid py-6">
+			{{> avtoperevozki-head}}
+		</div>
+
+		{{> features-box}}
 
 		<div class="d-block d-sm-none fs-4">XS до 639</div>
 		<div class="d-none d-sm-block d-md-none fs-4">SM до 959</div>

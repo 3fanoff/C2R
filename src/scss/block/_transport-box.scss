@@ -5,18 +5,28 @@
 }
 
 .transport-box {
+    $box: &;
     --cs-transport-blur-top: calc(50% - 20vw);
     --cs-transport-blur-left: calc(50% - 20vw);
     --cs-transport-blur-width: 50vw;
     --cs-transport-blur-filter: blur(25vw);
+    --cs-transport-title-fs: 2.7em;
+    --cs-transport-desc-fs: 1.5em;
+    --cs-transport-attr-fs: 1.5em;
+    --cs-transport-min-height: calc(100vh - var(--bs-gutter-x));
+    --cs-transport-height: auto;
+    --cs-transport-padding: 8% 5%;
 
     position: sticky;
     top: 0;
 
     background-color: #c9dff1;
+    background-size: cover;
+    background-position: center;
     border-radius: 30px;
-    min-height: calc(100vh - var(--bs-gutter-x));
-    padding: 8% 5%;
+    min-height: var(--cs-transport-min-height);
+    height: var(--cs-transport-height);
+    padding: var(--cs-transport-padding);
     font-size: calc(1em * (var(--view-width) / var(--cs-breakpoint-max)));
     overflow: hidden;
     //position: relative;
@@ -47,7 +57,7 @@
     }
 
     &__title {
-        font-size: 2.7em;
+        font-size: var(--cs-transport-title-fs);
         position: relative;
         margin: 10px 0 0;
         width: fit-content;
@@ -58,7 +68,7 @@
     }
 
     &__desc {
-        font-size: 1.5em;
+        font-size: var(--cs-transport-desc-fs);
         font-weight: 500;
         line-height: 1.3;
     }
@@ -68,13 +78,6 @@
         top: -1.5em;
         right: 0;
         transform: rotate(3.5deg) translateX(50%);
-
-        /*trick for vertical aligning of text*/
-        /*&::after {
-          content: "";
-          display: block;
-          height: 3px;
-        }*/
     }
 
     &__img {
@@ -85,15 +88,10 @@
         background-size: contain;
         background-position: center;
         padding-bottom: 80%;
-        /*margin: auto;
-       img {
-         width: 100%;
-         height: auto;
-       }*/
-
     }
 
     &-attr {
+        display: grid;
 
         &__col {
             display: flex;
@@ -101,7 +99,7 @@
             align-items: center;
 
             position: relative;
-            font-size: 1.5em;
+            font-size: var(--cs-transport-attr-fs);
             font-weight: 500;
 
             &:before {
@@ -137,22 +135,32 @@
         }
     }
 
+    &--page {
+        &:after {
+            content: none;
+        }
+
+        #{$box}__title {
+            text-transform: uppercase;
+        }
+    }
+
     @include media-breakpoint-up(sm) {
-        min-height: auto;
-        height: 110vw;
-        padding: 6% 5vw 5vw;
+        --cs-transport-title-fs: 3.2em;
+        --cs-transport-desc-fs: 1.35em;
+        --cs-transport-min-height: auto;
+        --cs-transport-height: 110vw;
+        --cs-transport-padding: 6% 5vw 5vw;
 
         &__img {
             padding-bottom: 0;
         }
 
         &__title {
-            font-size: 3.2em;
             margin-top: 20px;
         }
 
         &__desc {
-            font-size: 1.35em;
             font-weight: 500;
         }
 
@@ -161,6 +169,8 @@
         }
 
         &-attr {
+            grid-template-columns: 38% 1fr auto;
+
             &__col {
                 flex-direction: column;
                 align-items: start;
@@ -182,6 +192,12 @@
                 flex: 1 50%;
             }
         }
+
+        &--page {
+            --cs-transport-height: auto;
+            --cs-transport-padding: 60px 11% 80px;
+            --cs-transport-attr-fs: 1.3em;
+        }
     }
 
     @include media-breakpoint-up(md) {
@@ -189,29 +205,20 @@
         --cs-transport-blur-left: calc(90% - 350px);
         --cs-transport-blur-width: 350px;
         --cs-transport-blur-filter: blur(170px);
-
-        min-height: calc((100vw - var(--bs-gutter-x)) * 0.5215);
-        height: auto;
+        --cs-transport-title-fs: 2.65em;
+        --cs-transport-desc-fs: 1.1em;
+        --cs-transport-attr-fs: 1.3em;
+        --cs-transport-min-height: calc((100vw - var(--bs-gutter-x)) * 0.5215);
+        --cs-transport-height: auto;
 
         &__desc,
         &-attr {
-            margin-right: 40%;
+            margin-right: 45%;
         }
 
         &__title {
             margin-top: 0;
             margin-bottom: .2em;
-            font-size: 2.65em;
-        }
-
-        &__desc {
-            font-size: 1.1em;
-        }
-
-        &__badge {
-            /*&:after {
-              content: none;
-            }*/
         }
 
         &__img {
@@ -222,31 +229,44 @@
             background-position: center 10%;
         }
 
+        &-attr {
+            grid-template-columns: 1fr 1fr;
+            gap: 2em;
+        }
+
         &-attr__col {
-            font-size: 1.3em;
             line-height: 1.15;
         }
 
         &-btn__item {
             font-size: var(--bs-btn-font-size);
         }
+
+        &--page {
+            --cs-transport-title-fs: 3em;
+            --cs-transport-padding: 6% 5vw 5vw;
+            padding-right: 40%;
+
+            #{$box}-attr {
+                grid-template-columns: 38% 1fr auto;
+                gap: 0;
+            }
+        }
     }
 
     @include media-breakpoint-up(lg) {
-        min-height: calc((100vw - var(--bs-gutter-x)) * 0.41);
-        padding: 5vw;
+        --cs-transport-title-fs: 2.3em;
+        --cs-transport-desc-fs: .95em;
+        --cs-transport-attr-fs: 1.5em;
+        --cs-transport-min-height: calc((100vw - var(--bs-gutter-x)) * 0.41);
+        --cs-transport-padding: 5vw;
 
         &__desc {
             margin-right: 46%;
         }
 
         &__title {
-            font-size: 2.3em;
             margin-bottom: .5em;
-        }
-
-        &__desc {
-            font-size: .95em;
         }
 
         &__badge {
@@ -254,8 +274,8 @@
             top: -1.2em;
         }
 
-        &-attr__col {
-            font-size: 1.5em;
+        &-attr {
+            grid-template-columns: repeat(3, 1fr);
         }
 
         &-attr__key {
@@ -265,6 +285,13 @@
         &-attr__value {
             white-space: nowrap;
             font-size: .9em;
+        }
+
+        &--page {
+            --cs-transport-title-fs: 2.8em;
+            --cs-transport-desc-fs: .85em;
+
+            padding-right: 45%;
         }
     }
 }

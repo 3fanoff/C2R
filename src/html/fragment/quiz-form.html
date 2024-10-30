@@ -1,0 +1,140 @@
+<section class="quiz-form bg-primary text-light">
+	<script type="text/javascript">
+        function nextQuizFieldset(currentField, nextField, progress, step) {
+            this.form.elements[currentField].classList.add('d-none');
+            this.form.elements[nextField].classList.remove('d-none');
+            this.form.querySelector('.js-progress').style.width = progress;
+            this.form.querySelector('.js-progress-step').innerHTML = step;
+
+        }
+
+        function prevQuizFieldset(currentField, prevField, progress, step) {
+            this.form.elements[currentField].classList.add('d-none');
+            this.form.elements[prevField].classList.remove('d-none');
+            this.form.querySelector('.js-progress').style.width = progress;
+            this.form.querySelector('.js-progress-step').innerHTML = step;
+        }
+	</script>
+	<form class="position-relative">
+		<div class="quiz-form__step d-flex justify-content-between"><span>Заполните форму, чтобы узнать стоимость доставки</span><span
+				class="js-progress-step">1/4</span></div>
+		<div class="progress my-7" role="progressbar" aria-label="form progress" aria-valuenow="0" aria-valuemin="0"
+			 aria-valuemax="100">
+			<div class="progress-bar bg-secondary js-progress"></div>
+		</div>
+		<fieldset name="step-1">
+			<div class="mb-8">
+				<label for="quiz-input-from" class="form-label">Откуда</label>
+				<select class="form-select form-select-no-bg form-select-lg text-bg-primary" id="quiz-input-from">
+					<option value="1" class="text-bg-primary">Гуанчжоу</option>
+					<option value="2" class="text-bg-primary">Иу</option>
+					<option value="3" class="text-bg-primary">Фошань</option>
+				</select>
+			</div>
+			<div class="d-flex justify-content-between pt-6">
+				<button type="button" class="btn btn-light" disabled>
+					<i class="icon-prev"></i>Назад
+				</button>
+				<button type="button" class="btn btn-secondary"
+						onclick="nextQuizFieldset.call(this, 'step-1', 'step-2', '25%', '2/4');">
+					Далее<i class="icon-next"></i>
+				</button>
+			</div>
+		</fieldset>
+		<fieldset name="step-2" class="d-none">
+			<div class="mb-8">
+				<label for="quiz-input-to" class="form-label">Куда</label>
+				<input type="text" class="form-control form-control-no-bg form-control-lg text-bg-primary"
+					   id="quiz-input-to"
+					   placeholder="Москва">
+			</div>
+			<div class="d-flex justify-content-between pt-6">
+				<button type="button" class="btn btn-light"
+						onclick="prevQuizFieldset.call(this, 'step-2', 'step-1', '0%', '1/4');">
+					<i class="icon-prev"></i>Назад
+				</button>
+				<button type="button" class="btn btn-secondary"
+						onclick="nextQuizFieldset.call(this, 'step-2', 'step-3', '50%', '3/4');">
+					Далее<i class="icon-next"></i>
+				</button>
+			</div>
+		</fieldset>
+		<fieldset name="step-3" class="d-none">
+			<div class="mb-8">
+				<label for="quiz-input-type" class="form-label">Вид товара</label>
+				<select class="form-select form-select-no-bg form-select-lg text-bg-primary" id="quiz-input-type">
+					<option value="1" class="text-bg-primary">Электроника без АКБ</option>
+					<option value="2" class="text-bg-primary">Электроника с АКБ</option>
+					<option value="3" class="text-bg-primary">Обувь, одежда, сумки</option>
+					<option value="4" class="text-bg-primary">Текстиль</option>
+					<option value="5" class="text-bg-primary">Хоз. товары</option>
+					<option value="6" class="text-bg-primary">Автозапчасти</option>
+					<option value="7" class="text-bg-primary">Оборудование и инструмент</option>
+					<option value="8" class="text-bg-primary">Мебель</option>
+					<option value="9" class="text-bg-primary">Игрушки</option>
+					<option value="10" class="text-bg-primary">Аксессуары</option>
+					<option value="11" class="text-bg-primary">Спорт. инвентарь</option>
+					<option value="12" class="text-bg-primary">Видеокарты</option>
+					<option value="13" class="text-bg-primary">Другое</option>
+				</select>
+			</div>
+			<div class="d-flex justify-content-between pt-6">
+				<button type="button" class="btn btn-light"
+						onclick="prevQuizFieldset.call(this, 'step-3', 'step-2', '25%', '2/4');">
+					<i class="icon-prev"></i>Назад
+				</button>
+				<button type="button" class="btn btn-secondary"
+						onclick="nextQuizFieldset.call(this, 'step-3', 'step-4', '75%', '4/4');">
+					Далее<i class="icon-next"></i>
+				</button>
+			</div>
+		</fieldset>
+		<fieldset name="step-4" class="d-none">
+			<div class="mb-8">
+				<label for="quiz-input-sizes" class="form-label">Габариты груза</label>
+				<input type="text" class="form-control form-control-no-bg form-control-lg text-bg-primary"
+					   id="quiz-input-sizes"
+					   placeholder="Длина, см / Ширина, см / Высота, см / Масса, кг">
+			</div>
+			<div class="d-flex justify-content-between pt-6">
+				<button type="button" class="btn btn-light"
+						onclick="prevQuizFieldset.call(this, 'step-4', 'step-3', '50%', '3/4');">
+					<i class="icon-prev"></i>Назад
+				</button>
+				<button type="button" class="btn btn-secondary"
+						onclick="nextQuizFieldset.call(this, 'step-4', 'step-5', '100%', '4/4');">
+					Последний вопрос<i class="icon-next"></i>
+				</button>
+			</div>
+		</fieldset>
+		<fieldset name="step-5" class="d-none">
+			<div class="mb-6">
+				<label for="quiz-input-name" class="form-label visually-hidden">Имя</label>
+				<input type="text" class="form-control form-control-no-bg form-control-lg text-bg-primary"
+					   id="quiz-input-name"
+					   placeholder="Имя">
+			</div>
+			<div class="mb-6">
+				<label for="quiz-input-phone" class="form-label visually-hidden">Телефон</label>
+				<input type="text" class="form-control form-control-no-bg form-control-lg text-bg-primary"
+					   id="quiz-input-phone"
+					   placeholder="+7 (999) 999-99-99">
+			</div>
+			<div class="mb-8">
+				<label for="quiz-input-tg" class="form-label visually-hidden">Ник в Телеграм</label>
+				<input type="text" class="form-control form-control-no-bg form-control-lg text-bg-primary"
+					   id="quiz-input-tg"
+					   placeholder="Или ник в Телеграм">
+			</div>
+			<div class="d-flex justify-content-between pt-6">
+				<button type="button" class="btn btn-light"
+						onclick="prevQuizFieldset.call(this, 'step-5', 'step-4', '75%', '4/4');">
+					<i class="icon-prev"></i>Назад
+				</button>
+				<button type="submit" class="btn btn-secondary">
+					Узнать результат
+				</button>
+			</div>
+		</fieldset>
+	</form>
+</section>
