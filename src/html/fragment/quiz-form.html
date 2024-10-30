@@ -1,4 +1,18 @@
-<section class="quiz-form bg-primary text-light">
+{{setVar 'quiz_inputClass' ''}}
+{{setVar 'quiz_selectClass' ''}}
+{{setVar 'quiz_selectOptionClass' ''}}
+
+{{#if (eq classVar 'basic')}}
+	{{setVar 'quiz_inputClass' 'form-control-lg'}}
+	{{setVar 'quiz_selectClass' 'form-select-lg'}}
+	{{setVar 'quiz_selectOptionClass' ''}}
+{{else}}
+	{{setVar 'quiz_inputClass' 'form-control-no-bg form-control-lg text-bg-primary'}}
+	{{setVar 'quiz_selectClass' 'form-select-no-bg form-select-lg text-bg-primary'}}
+	{{setVar 'quiz_selectOptionClass' 'text-bg-primary'}}
+{{/if}}
+
+<section class="quiz-form {{baseClass}}">
 	<script type="text/javascript">
         function nextQuizFieldset(currentField, nextField, progress, step) {
             this.form.elements[currentField].classList.add('d-none');
@@ -15,7 +29,7 @@
             this.form.querySelector('.js-progress-step').innerHTML = step;
         }
 	</script>
-	<form class="position-relative">
+	<form class="">
 		<div class="quiz-form__step d-flex justify-content-between"><span>Заполните форму, чтобы узнать стоимость доставки</span><span
 				class="js-progress-step">1/4</span></div>
 		<div class="progress my-7" role="progressbar" aria-label="form progress" aria-valuenow="0" aria-valuemin="0"
@@ -24,11 +38,11 @@
 		</div>
 		<fieldset name="step-1">
 			<div class="mb-8">
-				<label for="quiz-input-from" class="form-label">Откуда</label>
-				<select class="form-select form-select-no-bg form-select-lg text-bg-primary" id="quiz-input-from">
-					<option value="1" class="text-bg-primary">Гуанчжоу</option>
-					<option value="2" class="text-bg-primary">Иу</option>
-					<option value="3" class="text-bg-primary">Фошань</option>
+				<label for="quiz-{{id}}-input-from" class="form-label">Откуда</label>
+				<select class="form-select {{@root.quiz_selectClass}}" id="quiz-{{id}}-input-from">
+					<option value="1" class="{{@root.quiz_selectOptionClass}}">Гуанчжоу</option>
+					<option value="2" class="{{@root.quiz_selectOptionClass}}">Иу</option>
+					<option value="3" class="{{@root.quiz_selectOptionClass}}">Фошань</option>
 				</select>
 			</div>
 			<div class="d-flex justify-content-between pt-6">
@@ -43,9 +57,9 @@
 		</fieldset>
 		<fieldset name="step-2" class="d-none">
 			<div class="mb-8">
-				<label for="quiz-input-to" class="form-label">Куда</label>
-				<input type="text" class="form-control form-control-no-bg form-control-lg text-bg-primary"
-					   id="quiz-input-to"
+				<label for="quiz-{{id}}-input-to" class="form-label">Куда</label>
+				<input type="text" class="form-control {{@root.quiz_inputClass}}"
+					   id="quiz-{{id}}-input-to"
 					   placeholder="Москва">
 			</div>
 			<div class="d-flex justify-content-between pt-6">
@@ -61,21 +75,21 @@
 		</fieldset>
 		<fieldset name="step-3" class="d-none">
 			<div class="mb-8">
-				<label for="quiz-input-type" class="form-label">Вид товара</label>
-				<select class="form-select form-select-no-bg form-select-lg text-bg-primary" id="quiz-input-type">
-					<option value="1" class="text-bg-primary">Электроника без АКБ</option>
-					<option value="2" class="text-bg-primary">Электроника с АКБ</option>
-					<option value="3" class="text-bg-primary">Обувь, одежда, сумки</option>
-					<option value="4" class="text-bg-primary">Текстиль</option>
-					<option value="5" class="text-bg-primary">Хоз. товары</option>
-					<option value="6" class="text-bg-primary">Автозапчасти</option>
-					<option value="7" class="text-bg-primary">Оборудование и инструмент</option>
-					<option value="8" class="text-bg-primary">Мебель</option>
-					<option value="9" class="text-bg-primary">Игрушки</option>
-					<option value="10" class="text-bg-primary">Аксессуары</option>
-					<option value="11" class="text-bg-primary">Спорт. инвентарь</option>
-					<option value="12" class="text-bg-primary">Видеокарты</option>
-					<option value="13" class="text-bg-primary">Другое</option>
+				<label for="quiz-{{id}}-input-type" class="form-label">Вид товара</label>
+				<select class="form-select {{@root.quiz_selectClass}}" id="quiz-{{id}}-input-type">
+					<option value="1" class="{{@root.quiz_selectOptionClass}}">Электроника без АКБ</option>
+					<option value="2" class="{{@root.quiz_selectOptionClass}}">Электроника с АКБ</option>
+					<option value="3" class="{{@root.quiz_selectOptionClass}}">Обувь, одежда, сумки</option>
+					<option value="4" class="{{@root.quiz_selectOptionClass}}">Текстиль</option>
+					<option value="5" class="{{@root.quiz_selectOptionClass}}">Хоз. товары</option>
+					<option value="6" class="{{@root.quiz_selectOptionClass}}">Автозапчасти</option>
+					<option value="7" class="{{@root.quiz_selectOptionClass}}">Оборудование и инструмент</option>
+					<option value="8" class="{{@root.quiz_selectOptionClass}}">Мебель</option>
+					<option value="9" class="{{@root.quiz_selectOptionClass}}">Игрушки</option>
+					<option value="10" class="{{@root.quiz_selectOptionClass}}">Аксессуары</option>
+					<option value="11" class="{{@root.quiz_selectOptionClass}}">Спорт. инвентарь</option>
+					<option value="12" class="{{@root.quiz_selectOptionClass}}">Видеокарты</option>
+					<option value="13" class="{{@root.quiz_selectOptionClass}}">Другое</option>
 				</select>
 			</div>
 			<div class="d-flex justify-content-between pt-6">
@@ -91,9 +105,9 @@
 		</fieldset>
 		<fieldset name="step-4" class="d-none">
 			<div class="mb-8">
-				<label for="quiz-input-sizes" class="form-label">Габариты груза</label>
-				<input type="text" class="form-control form-control-no-bg form-control-lg text-bg-primary"
-					   id="quiz-input-sizes"
+				<label for="quiz-{{id}}-input-sizes" class="form-label">Габариты груза</label>
+				<input type="text" class="form-control {{@root.quiz_inputClass}}"
+					   id="quiz-{{id}}-input-sizes"
 					   placeholder="Длина, см / Ширина, см / Высота, см / Масса, кг">
 			</div>
 			<div class="d-flex justify-content-between pt-6">
@@ -109,21 +123,21 @@
 		</fieldset>
 		<fieldset name="step-5" class="d-none">
 			<div class="mb-6">
-				<label for="quiz-input-name" class="form-label visually-hidden">Имя</label>
-				<input type="text" class="form-control form-control-no-bg form-control-lg text-bg-primary"
-					   id="quiz-input-name"
+				<label for="quiz-{{id}}-input-name" class="form-label visually-hidden">Имя</label>
+				<input type="text" class="form-control {{@root.quiz_inputClass}}"
+					   id="quiz-{{id}}-input-name"
 					   placeholder="Имя">
 			</div>
 			<div class="mb-6">
-				<label for="quiz-input-phone" class="form-label visually-hidden">Телефон</label>
-				<input type="text" class="form-control form-control-no-bg form-control-lg text-bg-primary"
-					   id="quiz-input-phone"
+				<label for="quiz-{{id}}-input-phone" class="form-label visually-hidden">Телефон</label>
+				<input type="text" class="form-control {{@root.quiz_inputClass}}"
+					   id="quiz-{{id}}-input-phone"
 					   placeholder="+7 (999) 999-99-99">
 			</div>
 			<div class="mb-8">
-				<label for="quiz-input-tg" class="form-label visually-hidden">Ник в Телеграм</label>
-				<input type="text" class="form-control form-control-no-bg form-control-lg text-bg-primary"
-					   id="quiz-input-tg"
+				<label for="quiz-{{id}}-input-tg" class="form-label visually-hidden">Ник в Телеграм</label>
+				<input type="text" class="form-control {{@root.quiz_inputClass}}"
+					   id="quiz-{{id}}-input-tg"
 					   placeholder="Или ник в Телеграм">
 			</div>
 			<div class="d-flex justify-content-between pt-6">

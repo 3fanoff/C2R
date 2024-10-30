@@ -1,15 +1,16 @@
 @use "sass:math";
 
-.articles-oversize {
+.oversize-box {
+    --cs-oversize-width: 200vw;
     overflow-x: scroll;
 
-    .articles {
-        width: calc(200vw);
+    .oversize {
+        width: var(--cs-oversize-width);
     }
 
     @include media-breakpoint-up(md) {
         overflow-x: auto;
-        .articles {
+        .oversize {
             width: auto;
         }
     }

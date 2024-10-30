@@ -1,0 +1,26 @@
+.thesis-box {
+    --cs-thesis-padding: 5vw;
+    --cs-thesis-base-fs: 1em;
+
+    font-size: calc(var(--cs-thesis-base-fs) * (var(--view-width) / var(--cs-breakpoint-max)));
+    border-radius: 30px;
+    padding: var(--cs-thesis-padding);
+
+    &__title {
+        font-size: 1.7em;
+        font-weight: 700;
+        line-height: 1.2;
+    }
+    p {
+        font-size: 1.2em;
+        font-weight: 500;
+    }
+
+    @include media-breakpoint-up(sm) {
+        font-size: .8em;
+    }
+
+    @include media-breakpoint-up(lg) {
+        --cs-thesis-padding: 40px 50px;
+    }
+}

@@ -1,6 +1,8 @@
 @use "sass:math";
 
 .quiz-form {
+    $quizform: &;
+
     border-radius: 20px;
     padding: 1.5rem;
     box-shadow: 0 0 10px rgba(0,0,0,.3);
@@ -21,6 +23,20 @@
 
     .form-control-no-bg::placeholder {
         color: rgba($light, .6);
+    }
+
+    &--bordered {
+        box-shadow: none;
+        border: 2px solid $light;
+        //position: relative;
+        background-image: linear-gradient($accent 0, $accent 124px, transparent 124px);
+
+        #{$quizform}__step {
+            span:first-child {
+                color: $primary
+            }
+
+        }
     }
 
     @include media-breakpoint-up(sm) {

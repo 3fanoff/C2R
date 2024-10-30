@@ -13,9 +13,10 @@ $quaternary:    #1b2340;
 $light:         #fcfcfc;
 $success:       #ed6b2a;
 $dark:          #1b2340;
+$accent:        #c9dff1;
 
 $quinary:       #0000EE;
-$accent:        #1183D3;
+
 
 
 //$link-color:    $success;
@@ -48,7 +49,7 @@ $grid-breakpoints: (
 );
 
 $container-max-widths: (
-        sm: 510px,
+        sm: 640px,
         md: 972px,
         lg: 1192px,
 );
@@ -140,6 +141,13 @@ body {
 @import "~bootstrap/scss/type";
 @import "~bootstrap/scss/images";
 @import "~bootstrap/scss/containers";
+
+@include media-breakpoint-only(sm) {
+  .container-sm-thin {
+    max-width: 510px;
+  }
+}
+
 @import "~bootstrap/scss/grid";
 @import "~bootstrap/scss/tables";
 @import "~bootstrap/scss/forms";
@@ -281,6 +289,9 @@ body {
 @import "block/quiz-form";
 @import "block/info-card";
 @import "block/features-box";
+@import "block/thesis-box";
+@import "block/form-box";
+
 
 .icon-prev:before, .icon-next:before {
   position: relative;

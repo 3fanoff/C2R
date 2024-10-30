@@ -43,7 +43,7 @@
 			{{> nums-map}}
 		</div>
 		<div class="container-sm py-3">
-			{{> quiz-form}}
+			{{> quiz-form baseClass='bg-primary text-light' classVar='transparent'}}
 		</div>
 		<div class="container-fluid py-3">
 			<section class="insta-box">
@@ -58,7 +58,7 @@
 			</section>
 		</div>
 		{{> phrases-box}}
-		<div class="container-fluid articles-oversize py-3">
+		<div class="container-fluid oversize-box py-3">
 			{{> articles}}
 		</div>
 		<div class="container-fluid py-3">
@@ -74,8 +74,31 @@
 		<div class="container-fluid py-6">
 			{{> avtoperevozki-head}}
 		</div>
-
 		{{> features-box}}
+
+		<!-- thesis-box -->
+		<div class="container py-3">
+			<section class="thesis-box bg-accent">
+				<div class="thesis-box__title mb-4">Доставка в контейнере по морю — это экономичный и надежный способ транспортировки больших объемов товаров на дальние расстояния</div>
+				<p>Этот метод обеспечивает высокую защиту груза и является экологически чистым. Однако следует учитывать более длительные сроки доставки и возможные задержки из-за погодных условий.
+				<p>Наша компания готова предложить оптимальные решения по морской контейнерной доставке, учитывая все ваши потребности и особенности груза.
+				<p>Оставьте заявку на нашем сайте, и мы поможем вам выбрать лучший способ доставки.</p>
+			</section>
+		</div>
+
+		<!-- form-box -->
+		<div class="container-fluid bg-primary py-3">
+			<section class="form-box text-light container-md px-0 px-sm-4" style="--cs-form-box-bg:url('/images/seatransport.png')">
+				{{> quiz-form baseClass='quiz-form--bordered bg-primary text-light mb-5 form-box__quiz' classVar='basic' id='form-box'}}
+				<div class="form-box__sup">**Стоимость доставки одного контейнера зависит от его объема и маршрута. Наши специалисты помогут
+					вам рассчитать точные затраты и предложат наиболее выгодные условия. Морская перевозка из Китая
+					в Россию обычно занимает от 20 до 45 дней, в зависимости от порта отправки и конечного пункта назначения.</div>
+			</section>
+		</div>
+
+		<div class="py-3"></div>
+		{{> info-card-thin-list}}
+		<div class="py-3"></div>
 
 		<div class="d-block d-sm-none fs-4">XS до 639</div>
 		<div class="d-none d-sm-block d-md-none fs-4">SM до 959</div>

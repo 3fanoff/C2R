@@ -45,6 +45,14 @@ export default {
         iter2: [1, 2],
       },
       partialDirectory: resolve(__dirname, 'src/html/fragment'),
+      helpers: {
+        setVar: (varName, varValue, options) => {
+          options.data.root[varName] = varValue;
+        },
+        eq: (value1, value2) => {
+          return (value1 === value2);
+        }
+      },
       reloadOnPartialChange: true
     })
   ],
