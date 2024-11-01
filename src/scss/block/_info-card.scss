@@ -49,4 +49,8 @@
         --cs-infocard-base-font-size: 1em;
         --cs-infocard-arrow-position: right top;
     }
+
+    @include media-breakpoint-up(lg) {
+        font-size: 1.2em;
+    }
 }

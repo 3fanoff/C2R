@@ -1,0 +1,44 @@
+@use 'sass:math';
+
+.footer-link {
+    color: $light;
+    margin-bottom: .9rem;
+    text-decoration: none;
+    &:hover {
+        color: var(--#{$prefix}link-hover-color);
+        text-decoration: underline;
+    }
+}
+
+.footer-logo {
+    display: block;
+    background: var(--cs-logo-alt) center center / contain no-repeat;
+    width: 120px;
+    height: 48px;
+}
+
+.footer-content {
+    font-size: #{math.div(14, 16)}rem;
+    line-height: 1.2;
+
+    span {
+        color: #b4b4b4;
+    }
+
+    span a {
+        color: #b4b4b4;
+        @extend .footer-link;
+    }
+}
+
+.footer-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: #{math.div(14, 16)}rem;
+
+
+    a {
+        @extend .footer-link
+    }
+}

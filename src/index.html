@@ -17,11 +17,9 @@
             document.body.style.setProperty('--view-width', document.documentElement.clientWidth);
         })
 	</script>
-	<header id="c2r-header">
-
-	</header>
+	{{> header}}
 	<main>
-		<div class="container-fluid pt-3">
+		<div class="container-fluid pb-3">
 			<div class="main-card text-sm-center" style="background-image: url('/images/main-card.jpg')">
 				<h1>Доставка грузов и&nbsp;товаров <span>из&nbsp;Китая в&nbsp;Россию</span></h1>
 				<h2>Наши решения по логистике позволяют существенно сократить расходы и время на доставку</h2>
@@ -100,7 +98,9 @@
 		{{> info-card-thin-list}}
 		<div class="py-3"></div>
 
-		<div class="d-block d-sm-none fs-4">XS до 639</div>
+		{{> advantages-box}}
+
+		<!--<div class="d-block d-sm-none fs-4">XS до 639</div>
 		<div class="d-none d-sm-block d-md-none fs-4">SM до 959</div>
 		<div class="d-none d-md-block d-lg-none fs-4">MD до 1199</div>
 		<div class="d-none d-lg-block fs-4">LG до XXX</div>
@@ -118,10 +118,8 @@
 		<div class="pb-2"></div>
 		<button class="btn btn-primary btn-sm">Калькулятор доставки btn-sm</button>
 		<button class="btn btn-secondary btn-sm">Получить быстрый расчет btn-sm</button>
-		<button class="btn btn-tertiary btn-sm">Узнать больше btn-sm</button>
+		<button class="btn btn-tertiary btn-sm">Узнать больше btn-sm</button>-->
 	</main>
-	<footer>
-
-	</footer>
+	{{> footer}}
 </body>
 </html>

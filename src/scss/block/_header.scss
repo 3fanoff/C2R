@@ -1,0 +1,85 @@
+@use 'sass:math';
+
+.header {
+    height: 76px;
+    align-items: center;
+    background: var(--#{$prefix}body-bg);
+
+    @include media-breakpoint-up(md) {
+        height: 80px;
+    }
+}
+
+.header-sticky {
+    position: sticky;
+    top: 0;
+    z-index: $zindex-sticky;
+
+    @include media-breakpoint-up(md) {
+        position: static;
+    }
+}
+
+.header-logo {
+    &__img {
+        display: block;
+        background: var(--cs-logo) center center / contain no-repeat;
+        overflow: hidden;
+        text-indent: -100vw;
+        width: 90px;
+        height: 36px;
+    }
+
+    @include media-breakpoint-up(md) {
+        &__img {
+            width: 112px;
+            height: 44px;
+        }
+    }
+}
+
+.header-menu {
+    &__link {
+        line-height: 1;
+        font-size: #{math.div(14, 16)}rem;
+        font-weight: 500;
+    }
+
+    &__dropdown {
+        max-width: 300px;
+        min-width: 280px;
+        a {
+            white-space: normal;
+            font-weight: 500;
+        }
+    }
+}
+
+.header-burger {
+    rect {
+        transition: transform linear .3s;
+    }
+    &:hover {
+        rect:first-child {
+            transform: translateY(1px);
+        }
+        rect:last-child {
+            transform: translateY(-1px);
+        }
+    }
+}
+
+.header-contacts {
+    &__phone {
+        font-weight: 700;
+        text-decoration: none;
+        color: $dark;
+    }
+}
+
+.header-offcanvas-close {
+    width: 28px;
+    height: 28px;
+    box-sizing: border-box;
+    background-size: contain;
+}

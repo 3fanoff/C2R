@@ -1,0 +1,34 @@
+@use 'sass:math';
+
+.icon-wrap-text {
+    --cs-icon-size: 32px;
+    padding-left: calc(var(--cs-icon-size) + 1rem);
+
+    &[data-icon] {
+        background-repeat: no-repeat;
+        background-size: var(--cs-icon-size);
+    }
+
+    &[data-icon=thumbs-up] {
+        background-image: url("@images/icons/thumbs_up_3d.png");
+    }
+
+    &[data-icon=thumbs-down] {
+        background-image: url("@images/icons/thumbs_down_3d.png");
+    }
+
+    &__title {
+        font-size: #{math.div(18, 16)}rem;
+        line-height: 1.35;
+        margin-bottom: .85rem;
+    }
+
+    &__desc {
+        font-size: #{math.div(14, 16)}rem;
+        line-height: 1.55;
+    }
+
+    @include media-breakpoint-up(md) {
+        --cs-icon-size: 50px;
+    }
+}

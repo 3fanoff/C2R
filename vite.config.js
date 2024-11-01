@@ -44,7 +44,10 @@ export default {
         title: 'C2R Logistics template',
         iter2: [1, 2],
       },
-      partialDirectory: resolve(__dirname, 'src/html/fragment'),
+      partialDirectory: [
+          resolve(__dirname, 'src/html/fragment'),
+          resolve(__dirname, 'src/html/layout')
+      ],
       helpers: {
         setVar: (varName, varValue, options) => {
           options.data.root[varName] = varValue;

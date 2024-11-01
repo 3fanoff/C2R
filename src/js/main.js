@@ -1,4 +1,5 @@
 import '@scss/main.app.scss';
+import * as bs from 'bootstrap';
 import CarouselGallery from "./carouselGallery";
 
 let carousels = null;
@@ -8,6 +9,29 @@ document.addEventListener('DOMContentLoaded', () => {
            new CarouselGallery(carousel).init();
         });
     }
+
+    document.querySelectorAll('.js-dropdown-toggle').forEach(element => {
+        let dropdownTimer;
+        const dropdown = new bs.Dropdown(element, {
+            display: 'static'
+        });
+
+        element.addEventListener('mouseover', () => {
+            clearTimeout(dropdownTimer);
+            console.log(dropdown);
+            dropdown.show();
+            let parentCenter = dropdown._parent.offsetWidth / 2;
+            let menuCenter = dropdown._menu.offsetWidth / 2;
+            dropdown._menu.style.left = -(menuCenter - parentCenter) + 'px';
+        })
+
+        dropdown._parent.addEventListener('mouseleave', () => {
+            dropdownTimer = setTimeout(() => {
+                dropdown.hide();
+            }, 1000);
+        })
+    })
+
 })
 
 
