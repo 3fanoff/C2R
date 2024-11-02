@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{{> head-base pageTitle='Страница доставки'}}
+</head>
+<body>
+	{{> header}}
+	<main>
+
+		<div class="container-fluid">
+			{{> avtoperevozki-head}}
+		</div>
+
+		{{> phrases-box-main-line}}
+
+		{{> advantages-box}}
+
+		<div class="container py-3">
+			<section class="thesis-box bg-accent">
+				<div class="thesis-box__title mb-4">Доставка в контейнере по морю — это экономичный и надежный способ транспортировки больших объемов товаров на дальние расстояния</div>
+				<p>Этот метод обеспечивает высокую защиту груза и является экологически чистым. Однако следует учитывать более длительные сроки доставки и возможные задержки из-за погодных условий.
+				<p>Наша компания готова предложить оптимальные решения по морской контейнерной доставке, учитывая все ваши потребности и особенности груза.
+				<p>Оставьте заявку на нашем сайте, и мы поможем вам выбрать лучший способ доставки.</p>
+			</section>
+		</div>
+
+		<div class="container-fluid my-7 py-7">
+			<div class="container-md title-box mb-5 mt-8" data-zoom="xs">
+				<div class="h2">Виды карго доставки</div>
+				<p>Мы предлагаем несколько вариантов карго доставки, чтобы удовлетворить потребности каждого клиента:</p>
+			</div>
+			{{> info-card-thin-list}}
+		</div>
+
+		<div class="container-fluid bg-primary py-8 my-7">
+			<div class="container-md title-box title-box-light mb-5 mt-8" data-zoom="xs">
+				<div class="h2">Рассчитать стоимость за 4 шага</div>
+				<p>Стоимость карго доставки зависит от нескольких факторов, таких как вес и объем груза, выбранный
+					транспортный способ и маршрут. Наши специалисты готовы предложить вам наиболее выгодные условия.
+					Используйте наш калькулятор, чтобы рассчитать стоимость доставки вашего груза.</p>
+			</div>
+			{{> delivery-form}}
+		</div>
+
+		<div class="container-fluid py-7">
+			<div class="container-md title-box mb-5 mt-8" data-zoom="xs">
+				<div class="h2">Почему нас выбирают</div>
+				<p>Мы занимаемся доставкой товаров из Китая в Россию под ключ: от поиска и выкупа до быстрой и надежной
+					доставки. Бесплатный поиск, выгодные тарифы, полное сопровождение сделки. Ваши грузы в надежных руках!</p>
+			</div>
+			{{> features-box}}
+		</div>
+
+		<div class="container-fluid my-7 py-6">
+			<div class="container-md title-box mb-5" data-zoom="xs">
+				<div class="h2">Ваш груз в надежных руках: <span>гарантируем бережную доставку из Китая!</span></div>
+				<p>Мы предлагаем профессиональные услуги по доставке, где каждый груз находится под надежным контролем.
+					Быстро, безопасно и удобно!</p>
+			</div>
+			{{> insta-box}}
+		</div>
+
+		<div class="container py-7">
+			{{> quote-box}}
+		</div>
+
+		<div class="container-fluid my-7">
+			{{> nums-map}}
+		</div>
+
+		<div class="p-1"></div>
+
+		{{> phrases-box}}
+
+		<div class="container-fluid oversize-box my-8">
+			<div class="container-md title-box title-box-sm-center mb-5 mt-8" data-zoom="xs">
+				<div class="h2">Помогаем сэкономить на доставке из Китая: <span>кейсы наших клиентов</span></div>
+				<p>Посмотрите на реальные примеры, в которых наша команда помогла клиентам снизить затраты
+					и улучшить процессы закупки и логистики</p>
+			</div>
+
+			{{> articles}}
+		</div>
+
+		<div class="container-fluid pb-4 pt-6">
+			{{> social-box}}
+		</div>
+
+		{{> articles-carousel}}
+
+		<div class="container-fluid bg-dark">
+			{{> contact-box}}
+		</div>
+	</main>
+	{{> footer}}
+</body>
+</html>

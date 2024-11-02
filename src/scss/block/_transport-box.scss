@@ -13,6 +13,7 @@
     --cs-transport-title-fs: 2.7em;
     --cs-transport-desc-fs: 1.5em;
     --cs-transport-attr-fs: 1.5em;
+    --cs-transport-btn-fs: 1.5em;
     --cs-transport-min-height: calc(100vh - var(--bs-gutter-x));
     --cs-transport-height: auto;
     --cs-transport-padding: 8% 5%;
@@ -36,7 +37,7 @@
     flex-direction: column;
 
     &:after {
-        content: none;
+        content: '';
         position: absolute;
         border-radius: 3000px;
         top: var(--cs-transport-blur-top);
@@ -44,6 +45,7 @@
         width: var(--cs-transport-blur-width);
         height: var(--cs-transport-blur-width);
         filter: var(--cs-transport-blur-filter);
+        background-color: #f5f5f5;
     }
 
     &--dark {
@@ -51,8 +53,7 @@
         color: $light;
 
         &:after {
-            content: "";
-            background-color: #f5f5f5;
+            //content: "";
         }
     }
 
@@ -131,7 +132,7 @@
         display: grid;
 
         &__item {
-            font-size: 1.5em;
+            font-size: var(--cs-transport-btn-fs);
         }
     }
 

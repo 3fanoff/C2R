@@ -1,22 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>{{title}}</title>
-	<script type="module" src="./js/main.js"></script>
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&subset=latin,cyrillic"
-		  rel="stylesheet">
+	{{> head-base pageTitle = 'Блоки'}}
 </head>
 <body>
-	<script type="text/javascript">
-        document.body.style.setProperty('--view-width', document.documentElement.clientWidth);
-        window.addEventListener('resize', () => {
-            document.body.style.setProperty('--view-width', document.documentElement.clientWidth);
-        })
-	</script>
 	{{> header}}
 	<main>
 		<div class="container-fluid pb-3">
@@ -44,16 +31,7 @@
 			{{> quiz-form baseClass='bg-primary text-light' classVar='transparent'}}
 		</div>
 		<div class="container-fluid py-3">
-			<section class="insta-box">
-				<div class="insta-box__item item-1" style="background-image: url('/images/insta/insta-gif-001.gif')"></div>
-				<div class="insta-box__item item-2" style="background-image: url('/images/insta/insta-img-001.jpg')"></div>
-				<div class="insta-box__item item-3" style="background-image: url('/images/insta/insta-img-002.jpg')"></div>
-				<div class="insta-box__item item-4" style="background-image: url('/images/insta/insta-img-003.jpg')"></div>
-				<div class="insta-box__item item-5" style="background-image: url('/images/insta/insta-img-004.png')"></div>
-				<div class="insta-box__item item-6" style="background-image: url('/images/insta/insta-gif-002.gif')"></div>
-				<div class="insta-box__item item-7" style="background-image: url('/images/insta/insta-img-005.png')"></div>
-				<div class="insta-box__item item-8" style="background-image: url('/images/insta/insta-gif-003.gif')"></div>
-			</section>
+			{{> insta-box}}
 		</div>
 		{{> phrases-box}}
 		<div class="container-fluid oversize-box py-3">
@@ -86,12 +64,7 @@
 
 		<!-- form-box -->
 		<div class="container-fluid bg-primary py-3">
-			<section class="form-box text-light container-md px-0 px-sm-4" style="--cs-form-box-bg:url('/images/seatransport.png')">
-				{{> quiz-form baseClass='quiz-form--bordered bg-primary text-light mb-5 form-box__quiz' classVar='basic' id='form-box'}}
-				<div class="form-box__sup">**Стоимость доставки одного контейнера зависит от его объема и маршрута. Наши специалисты помогут
-					вам рассчитать точные затраты и предложат наиболее выгодные условия. Морская перевозка из Китая
-					в Россию обычно занимает от 20 до 45 дней, в зависимости от порта отправки и конечного пункта назначения.</div>
-			</section>
+			{{> delivery-form}}
 		</div>
 
 		<div class="py-3"></div>

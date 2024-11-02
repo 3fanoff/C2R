@@ -1,4 +1,9 @@
-<section class="oversize row row-cols-3">
+{{#if (eqw baseClass undefined)}}
+	{{setVar 'article_baseClass' 'row-cols-3'}}
+{{else}}
+	{{setVar 'article_baseClass' baseClass}}
+{{/if}}
+<section class="oversize row {{@root.article_baseClass}}">
 	<article class="article col">
 		<div class="article__img"><img src="images/content/case-1.jpg" alt="article 1" width="1600" height="900" loading="lazy"></div>
 		<div class="article__title h6"><a href="#">Как Рустам сэкономил 426 137,60 рублей на закупке салфеток в

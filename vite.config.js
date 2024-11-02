@@ -12,9 +12,22 @@ export default {
     outDir: '../dist',
     target: 'es2015',
     emptyOutDir: true,
+    rollupOptions: {
+      input: {
+        index: resolve(__dirname, 'src/index.html'),
+        about: resolve(__dirname, 'src/about.html'),
+        cases: resolve(__dirname, 'src/cases.html'),
+        posrednik: resolve(__dirname, 'src/posrednik.html'),
+        delivery: resolve(__dirname, 'src/delivery.html'),
+        calculator: resolve(__dirname, 'src/calculator.html'),
+        blog: resolve(__dirname, 'src/blog.html'),
+        main: resolve(__dirname, 'src/main.html'),
+      },
+    },
   },
   server: {
-    port: 8080
+    port: 8080,
+    hmr: false,
   },
   css: {
     devSourcemap: true,
@@ -54,6 +67,9 @@ export default {
         },
         eq: (value1, value2) => {
           return (value1 === value2);
+        },
+        eqw: (value1, value2) => {
+          return (value1 == value2);
         }
       },
       reloadOnPartialChange: true

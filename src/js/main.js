@@ -3,6 +3,8 @@ import * as bs from 'bootstrap';
 import CarouselGallery from "./carouselGallery";
 
 let carousels = null;
+let ltLaptop = window.matchMedia('(max-width: 939px)');
+
 document.addEventListener('DOMContentLoaded', () => {
     if ((carousels = document.querySelectorAll('.js-carousel-gallery')).length) {
         Array.from(carousels).forEach((carousel) => {
@@ -12,9 +14,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('.js-dropdown-toggle').forEach(element => {
         let dropdownTimer;
+
+
         const dropdown = new bs.Dropdown(element, {
             display: 'static'
         });
+
+        element.addEventListener('click', (e) => {
+            if (ltLaptop.matches) {
+                e.preventDefault();
+            }
+        })
 
         element.addEventListener('mouseover', () => {
             clearTimeout(dropdownTimer);
@@ -28,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
         dropdown._parent.addEventListener('mouseleave', () => {
             dropdownTimer = setTimeout(() => {
                 dropdown.hide();
-            }, 1000);
+            }, ltLaptop.matches ? 0 : 1000);
         })
     })
 

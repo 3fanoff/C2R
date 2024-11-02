@@ -13,7 +13,7 @@
 .header-sticky {
     position: sticky;
     top: 0;
-    z-index: $zindex-sticky;
+    z-index: $zindex-sticky + 1;
 
     @include media-breakpoint-up(md) {
         position: static;
@@ -75,6 +75,10 @@
         text-decoration: none;
         color: $dark;
     }
+}
+
+.header-offcanvas {
+    bottom: auto;
 }
 
 .header-offcanvas-close {

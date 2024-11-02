@@ -7,7 +7,7 @@
   "scripts": {
     "prod": "vite build",
     "prev": "vite preview",
-    "dev": "vite"
+    "dev": "vite --host"
   },
   "author": "Michael Trifanov",
   "license": "ISC",

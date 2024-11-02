@@ -1,3 +1,13 @@
+<script type="text/javascript">
+    (function (doc) {
+        var minWidth = Math.min(doc.documentElement.clientWidth, 1600);
+        doc.body.style.setProperty('--view-width', minWidth);
+        window.addEventListener('resize', () => {
+            minWidth = Math.min(doc.documentElement.clientWidth, 1600);
+            doc.body.style.setProperty('--view-width', minWidth);
+        })
+	})(document);
+</script>
 <header id="c2r-header" class="container-fluid header-sticky">
 	<div class="header row gx-6 flex-nowrap">
 		<div class="col header-logo">
@@ -45,7 +55,7 @@
 			</a>
 		</div>
 	</div>
-	<div class="offcanvas offcanvas-top" tabindex="-1" id="mobile-header" data-bs-scroll="true">
+	<div class="offcanvas offcanvas-top header-offcanvas" tabindex="-1" id="mobile-header" data-bs-scroll="true">
 		<div class="offcanvas-body d-flex flex-column mb-4">
 			<div class="header row gx-6 flex-nowrap">
 				<div class="col header-logo">
@@ -75,7 +85,7 @@
 				<a class="nav-link header-menu__link" href="#">Блог</a>
 				<a class="nav-link header-menu__link" href="#">Контакты</a>
 			</nav>
-			<div class="d-flex justify-content-center mb-5 mt-auto">
+			<div class="d-flex justify-content-center mb-5 mt-7">
 				<a href="#" class="header-contacts__phone me-4">+7 (495) 255-52-82</a>
 			</div>
 			<div class="d-flex justify-content-center gap-4 mb-5">
