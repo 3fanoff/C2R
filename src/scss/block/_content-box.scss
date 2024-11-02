@@ -1,0 +1,31 @@
+@use "sass:math";
+
+.content-box {
+    --cs-content-h2: #{math.div(22, 16)}rem;
+
+    h2 {
+        font-size: var(--cs-content-h2);
+        margin-bottom: #{math.div(14, 16)}rem;
+        max-width: 960px;
+
+        & + .content-box-divider {
+            margin-top: #{math.div(28, 16)}rem;
+        }
+    }
+
+    &-divider {
+        position: relative;
+        width: 80px;
+        height: 3px;
+        background: $secondary;
+        margin-bottom: #{math.div(14, 16)}rem;
+    }
+
+    @include media-breakpoint-up(sm) {
+        --cs-content-h2: #{math.div(24, 16)}rem;
+    }
+
+    @include media-breakpoint-up(lg) {
+        --cs-content-h2: #{math.div(26, 16)}rem;
+    }
+}

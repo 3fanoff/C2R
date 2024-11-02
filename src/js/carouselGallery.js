@@ -18,12 +18,13 @@ const nodesLikeArray = function (nodeList) {
 class CarouselGallery {
 
     static breakpoints = {
-        xs: window.matchMedia('(max-width:767.8px)'),
-        sm: window.matchMedia('(min-width:768px) and (max-width:1023.8px)'),
-        md: window.matchMedia('(min-width:1024px)')
+        xs: window.matchMedia('(max-width:639.8px)'),
+        sm: window.matchMedia('(min-width:640px) and (max-width:959.8px)'),
+        md: window.matchMedia('(min-width:960px) and (max-width:1199.8px)'),
+        lg: window.matchMedia('(min-width:1200px)'),
     };
 
-    breakpoint = 'md';
+    breakpoint = 'lg';
     defaultOffsetX = 1;
     offsetX = 1;
     activeIndex = 0;// firstIndex by default

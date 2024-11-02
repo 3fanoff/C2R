@@ -1,5 +1,6 @@
 import '@scss/main.app.scss';
-import * as bs from 'bootstrap';
+import Dropdown from 'bootstrap/js/src/dropdown';
+import Offcanvas from 'bootstrap/js/src/offcanvas';
 import CarouselGallery from "./carouselGallery";
 
 let carousels = null;
@@ -15,9 +16,18 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.js-dropdown-toggle').forEach(element => {
         let dropdownTimer;
 
-
-        const dropdown = new bs.Dropdown(element, {
-            display: 'static'
+        const dropdown = new Dropdown(element, {
+            //display: 'static',
+            popperConfig: {
+                modifiers: [
+                    {
+                        name: 'offset',
+                        options: {
+                            offset: [0, 16],
+                        },
+                    },
+                ],
+            }
         });
 
         element.addEventListener('click', (e) => {
@@ -30,9 +40,9 @@ document.addEventListener('DOMContentLoaded', () => {
             clearTimeout(dropdownTimer);
             console.log(dropdown);
             dropdown.show();
-            let parentCenter = dropdown._parent.offsetWidth / 2;
-            let menuCenter = dropdown._menu.offsetWidth / 2;
-            dropdown._menu.style.left = -(menuCenter - parentCenter) + 'px';
+            //let parentCenter = dropdown._parent.offsetWidth / 2;
+            //let menuCenter = dropdown._menu.offsetWidth / 2;
+            //dropdown._menu.style.left = -(menuCenter - parentCenter) + 'px';
         })
 
         dropdown._parent.addEventListener('mouseleave', () => {
