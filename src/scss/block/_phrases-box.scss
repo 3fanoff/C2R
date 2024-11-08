@@ -38,4 +38,12 @@
             }
         }
     }
+
+    @if $enable-reduced-motion {
+        @media (prefers-reduced-motion: reduce) {
+            &-list {
+                animation: none;
+            }
+        }
+    }
 }

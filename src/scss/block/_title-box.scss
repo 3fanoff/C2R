@@ -1,0 +1,100 @@
+@use "sass:math";
+
+.title-box {
+    --cs-title-fs: #{math.div(24, 16)}rem;
+    --cs-title-lh: 1.1;
+    --cs-desc-fs: #{math.div(14, 16)}rem;
+    --cs-desc-maxw: 600px;
+
+    --cs-title-color: #{$dark};
+    --cs-desc-color: #{$dark};
+
+    display: flex;
+    flex-direction: column;
+    color: var(--cs-title-color);
+
+
+    h1, h2 {
+        font-size: var(--cs-title-fs);
+        line-height: var(--cs-title-lh);
+        margin-bottom: .85rem;
+        max-width: 1000px;
+    }
+
+    span {
+        color: $primary;
+    }
+
+    &[data-span=alt] {
+        span {
+            color: $secondary;
+        }
+    }
+
+    p {
+        color: var(--cs-desc-color);
+        opacity: .6;
+        font-size: var(--cs-desc-fs);
+        line-height: 1.28;
+        font-weight: 500;
+    }
+
+    &-center {
+        text-align: center;
+        align-items: center;
+    }
+
+    &-size-1 {
+        --cs-title-fs: #{math.div(26, 16)}rem;
+    }
+
+    @include media-breakpoint-only(xs) {
+        &[data-zoom=xs] {
+            zoom: calc(2 / (var(--cs-breakpoint-max) / var(--view-width)));
+        }
+    }
+
+    @include media-breakpoint-up(sm) {
+        --cs-title-fs: #{math.div(32, 16)}rem;
+        --cs-title-lh: 1.1;
+        --cs-desc-fs: 1rem;
+
+        &-sm-center {
+            text-align: center;
+            align-items: center;
+        }
+
+        &-size-1 {
+            --cs-title-fs: #{math.div(30, 16)}rem;
+        }
+
+        p {
+            max-width: var(--cs-desc-maxw);
+        }
+    }
+
+    @include media-breakpoint-up(md) {
+        --cs-title-fs: #{math.div(34, 16)}rem;
+        --cs-desc-fs: #{math.div(18, 16)}rem;
+        --cs-desc-maxw: 820px;
+
+        &-md-start {
+            text-align: left;
+            align-items: flex-start;
+        }
+
+        &-size-1 {
+            --cs-title-fs: #{math.div(38, 16)}rem;
+        }
+    }
+
+    @include media-breakpoint-up(lg) {
+        //--cs-title-lh: 1.23;
+        --cs-title-fs: #{math.div(42, 16)}rem;
+    }
+}
+
+.title-box-light {
+    --cs-title-color: #{$light};
+    --cs-desc-color: #{$light};
+}

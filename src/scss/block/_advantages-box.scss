@@ -1,0 +1,10 @@
+.advantages-box {
+    @include media-breakpoint-up(md) {
+        .col-md-5 {
+            width: 70%;
+        }
+        .col-md-3 {
+            width: 30%;
+        }
+    }
+}

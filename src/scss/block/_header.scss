@@ -11,13 +11,7 @@
 }
 
 .header-sticky {
-    position: sticky;
-    top: 0;
     z-index: $zindex-sticky + 1;
-
-    @include media-breakpoint-up(md) {
-        position: static;
-    }
 }
 
 .header-logo {

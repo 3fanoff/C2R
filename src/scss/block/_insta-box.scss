@@ -29,8 +29,18 @@
     }
 
     @include media-breakpoint-up(md) {
-        grid-template-columns: 19vw 19vw 19vw 22vw auto;
-        grid-template-rows: 19vw 19vw;
+        //grid-template-columns: 19vw 19vw 19vw 22vw auto;
+        grid-template-columns: 20% 20% 20% 23% auto;
+        //grid-template-rows: 19vw 19vw;
+        grid-template-rows: repeat(2, 1fr);
         grid-auto-flow: column;
+
+        &__item {
+            padding-bottom: 100%;
+        }
+
+        .item-1, .item-6 {
+            padding-bottom: 200%;
+        }
     }
 }

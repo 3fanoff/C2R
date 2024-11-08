@@ -1,3 +1,4 @@
+@use 'sass:math';
 
 [class*="transport-box"], {
     position: relative;
@@ -224,7 +225,7 @@
 
         &__img {
             position: absolute;
-            width: 40%;
+            width: 37%;
             right: 0;
             top: 0;
             background-position: center 10%;
@@ -256,11 +257,13 @@
     }
 
     @include media-breakpoint-up(lg) {
-        --cs-transport-title-fs: 2.3em;
+        --cs-transport-title-fs: 2.15em;
         --cs-transport-desc-fs: .95em;
         --cs-transport-attr-fs: 1.5em;
         --cs-transport-min-height: calc((100vw - var(--bs-gutter-x)) * 0.41);
         --cs-transport-padding: 5vw;
+
+
 
         &__desc {
             margin-right: 46%;
@@ -286,6 +289,11 @@
         &-attr__value {
             white-space: nowrap;
             font-size: .9em;
+        }
+
+        &-btn__item {
+            --bs-btn-padding-y: #{math.div(23, 16)}em;
+            --bs-btn-font-size: .8em;
         }
 
         &--page {

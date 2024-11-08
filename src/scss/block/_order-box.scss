@@ -1,0 +1,132 @@
+@use "sass:math";
+
+.order-box {
+    --cs-orderbox-padding: 1.5rem;
+    --cs-orderbox-bg: #{$accent};
+    --cs-orderbox-color: var(--#{$prefix}body-color);
+
+    --cs-transport-btn-fs: 1em;
+
+    --cs-transport-blur-top: calc(50% - 20vw);
+    --cs-transport-blur-left: calc(50% - 20vw);
+    --cs-transport-blur-width: 50vw;
+    --cs-transport-blur-filter: blur(25vw);
+
+    [data-content] {
+        position: relative;
+        z-index: 2;
+    }
+
+    background: var(--cs-orderbox-bg);
+    border-radius: 30px;
+    font-size: #{math.div(14, 16)}rem;
+    font-weight: 500;
+    line-height: 1.28;
+    color: var(--cs-orderbox-color);
+    padding: var(--cs-orderbox-padding);
+    position: relative;
+
+    &:after {
+        content: "";
+        position: absolute;
+        border-radius: 3000px;
+        top: var(--cs-transport-blur-top);
+        left: var(--cs-transport-blur-left);
+        width: var(--cs-transport-blur-width);
+        height: var(--cs-transport-blur-width);
+        filter: var(--cs-transport-blur-filter);
+
+        background-color: #f5f5f5;
+    }
+
+    &__img {
+        position: relative;
+        z-index: 10;
+
+        width: 80%;
+        left: 10%;
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    &__sup {
+        font-size: #{math.div(12, 16)}rem;
+        font-weight: 500;
+        line-height: 1.55;
+        color: $light;
+        background: $success;
+        border-radius: 10px;
+        position: absolute;
+        top: -30px;
+        left: 0;
+
+        width: 60%;
+        padding: 1rem;
+        text-align: center;
+    }
+
+
+    &-dark {
+        --cs-orderbox-bg: #{$primary};
+        --cs-orderbox-color: #{$light};
+    }
+
+    @include media-breakpoint-up(sm) {
+        --cs-orderbox-padding: 50px 40px;
+
+        &__img {
+            padding-left: 40%;
+            left: 0;
+            width: 100%;
+        }
+    }
+
+    @include media-breakpoint-up(md) {
+        --cs-orderbox-padding: 50px;
+
+        --cs-transport-blur-top: 5%;
+        --cs-transport-blur-left: calc(90% - 350px);
+        --cs-transport-blur-width: 350px;
+        --cs-transport-blur-filter: blur(170px);
+
+        &__sup {
+            width: 100%;
+            top: 100%;
+        }
+
+        &__img {
+            position: absolute;
+            left: auto;
+            right: 20px;
+            top: 18%;
+            width: 40%;
+            padding: 0;
+        }
+    }
+
+    @include media-breakpoint-up(lg) {
+        --cs-orderbox-padding: 60px 50px;
+
+        &__img {
+            bottom: 120px;
+            width: 43%;
+            top: auto;
+        }
+
+        &__sup {
+            width: 162px;
+            height: 162px;
+            top: -60px;
+            right: 0;
+            left: auto;
+            transform: rotate(10deg);
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            padding: .5rem;
+        }
+    }
+}

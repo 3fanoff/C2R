@@ -18,13 +18,23 @@ const nodesLikeArray = function (nodeList) {
 class CarouselGallery {
 
     static breakpoints = {
-        xs: window.matchMedia('(max-width:767.8px)'),
-        sm: window.matchMedia('(min-width:768px) and (max-width:1023.8px)'),
-        md: window.matchMedia('(min-width:1024px)')
+        xs: window.matchMedia('(max-width:639.8px)'),
+        sm: window.matchMedia('(min-width:640px) and (max-width:959.8px)'),
+        md: window.matchMedia('(min-width:960px) and (max-width:1199.8px)'),
+        lg: window.matchMedia('(min-width:1200px)'),
     };
 
-    breakpoint = 'md';
+    static OPTIONS = {
+      autoplay: false,
+      offset: {},
+      viewport: {},
+      circular: true
+    };
+
+    breakpoint = 'lg';
     defaultOffsetX = 1;
+    translateX = 0;
+    translateXonMove = 0;
     offsetX = 1;
     activeIndex = 0;// firstIndex by default
     lastIndex = 1;
@@ -44,13 +54,14 @@ class CarouselGallery {
      */
     constructor(carouselElement, options = {}) {
         this.carousel = carouselElement;
-        this.options = JSON.parse(this.carousel.dataset.options);
+        this.options = Object.assign(CarouselGallery.OPTIONS, options, JSON.parse(this.carousel.dataset.options));
         this.wrapper = carouselElement.querySelector('.js-carousel-gallery__wrap');
         this.arrows = nodesLikeArray(carouselElement.querySelectorAll('.js-carousel-gallery__arrow'));
         this.points = nodesLikeArray(carouselElement.querySelectorAll('.js-carousel-gallery__point'));
         this.carouselItems = nodesLikeArray(carouselElement.querySelectorAll('.js-carousel-gallery__item'));
         this.lastIndex = this.carouselItems.length - 1;
         this.touchEvents = new TouchMoveEvents(this.wrapper);
+        this.isCircular = this.options.circular;
     }
 
     init() {
@@ -71,8 +82,9 @@ class CarouselGallery {
                 switch (e.currentTarget.dataset.type) {
                     case 'prev':
                         this.toLeftByXPos(this.offsetX);
-                        this.togglePointClassName(this.getActiveIndexByOffset(this.offsetX, 'prev'), this.activeIndex);
+                        //this.togglePointClassName(this.getActiveIndexByOffset(this.offsetX, 'prev'), this.activeIndex);
                         this.setActiveIndexByOffset(this.offsetX, 'prev');
+                        this.checkArrowsVisibility();
                         break;
                     case 'next':
                         this.nextItemAction();
@@ -110,16 +122,27 @@ class CarouselGallery {
         });
 
         this.touchEvents.addOnTouchMove((startX, endX) => {
-            this.setWrapperCSS(CSS_TRANSFORM, 'translateX(' + endX + 'px)');
+            let translateX = endX;
+            if (!this.isCircular) {
+                if (this.touchEvents.direction === 'prev') {
+                    translateX = this.translateX + endX >= 0 ? 0 : this.translateX + endX
+                } else {
+                    translateX = Math.abs(this.translateX + endX) > this.wrapper.scrollWidth - this.wrapper.clientWidth ?
+                        (this.wrapper.scrollWidth - this.wrapper.clientWidth) * -1 :
+                        this.translateX + endX;
+                }
+            }
+            this.translateXonMove = translateX;
+            this.setWrapperCSS(CSS_TRANSFORM, 'translateX(' + translateX + 'px)');
         });
 
         this.touchEvents.addOnTouchEnd((startX, endX) => {
             let itemPixelSize = this.wrapper.clientWidth / this.options.viewport[this.breakpoint];
             let multiplier = this.touchEvents.direction === 'next' ? -1 : 1;
-            let offsetX = Math.round(endX / itemPixelSize * multiplier);
+            let offsetX = Math.round((this.isCircular ? endX : this.translateXonMove ) / itemPixelSize * multiplier);
 
             if (this.options.viewport[this.breakpoint] === 1 && offsetX === 0) {
-                offsetX = (endX / itemPixelSize * multiplier > 0.2 ? 1 : 0);
+                offsetX = ((this.isCircular ? endX : this.translateXonMove) / itemPixelSize * multiplier > 0.2 ? 1 : 0);
             }
 
             this.wrapper.classList.remove(CLASS_NOTRANSITION);
@@ -127,6 +150,9 @@ class CarouselGallery {
             executeAfterTransition(() => {
                 this.setAutoplay();
                 this.wrapper.classList.add(CLASS_NOTRANSITION);
+
+                if (!this.isCircular) return;
+
                 this.setWrapperCSS(CSS_TRANSFORM);
                 let i = 0;
                 switch (this.touchEvents.direction) {
@@ -145,9 +171,17 @@ class CarouselGallery {
                 }
             }, this.wrapper, true);
 
-            this.setWrapperCSS(CSS_TRANSFORM, 'translateX(' + (multiplier * offsetX * itemPixelSize) + 'px)');
-            this.togglePointClassName(this.getActiveIndexByOffset(offsetX, this.touchEvents.direction), this.activeIndex);
-            this.setActiveIndexByOffset(offsetX, this.touchEvents.direction);
+            this.translateX = multiplier * offsetX * itemPixelSize;
+            this.translateXonMove = 0;
+            this.setWrapperCSS(CSS_TRANSFORM, 'translateX(' + this.translateX + 'px)');
+            //this.togglePointClassName(this.getActiveIndexByOffset(offsetX, this.touchEvents.direction), this.activeIndex);
+            if (this.isCircular) {
+                this.setActiveIndexByOffset(offsetX, this.touchEvents.direction);
+            } else {
+                this.setActiveIndex(offsetX);
+            }
+
+            this.checkArrowsVisibility();
         });
 
         this.setAutoplay();
@@ -169,8 +203,9 @@ class CarouselGallery {
     nextItemAction() {
         if (this._inTransitioning) return;
         this.toRightByXPos(this.offsetX);
-        this.togglePointClassName(this.getActiveIndexByOffset(this.offsetX, 'next'), this.activeIndex);
+        //this.togglePointClassName(this.getActiveIndexByOffset(this.offsetX, 'next'), this.activeIndex);
         this.setActiveIndexByOffset(this.offsetX, 'next');
+        this.checkArrowsVisibility();
     }
 
     setAutoplay() {
@@ -203,12 +238,19 @@ class CarouselGallery {
         switch (direction) {
             case 'prev':
                 if (this.activeIndex - offsetX < 0) {
+                    if (!this.isCircular) return 0
                     return (this.lastIndex + 1) + (this.activeIndex - offsetX);
                 }
                 return this.activeIndex - offsetX;
             case 'next':
                 if (this.activeIndex + offsetX > this.lastIndex) {
+                    if (!this.isCircular) return this.activeIndex;
                     return 0;
+                }
+                if (!this.isCircular) {
+                    if (this.lastIndex + 1 - (this.activeIndex + offsetX) < this.options.viewport[this.breakpoint]) {
+                        return (this.lastIndex + 1) - this.options.viewport[this.breakpoint];
+                    }
                 }
                 return this.activeIndex + offsetX;
         }
@@ -227,40 +269,82 @@ class CarouselGallery {
         return this;
     }
 
+    checkArrowsVisibility() {
+        if (this.arrows.length) {
+            this.arrows.forEach((arrow) => {
+                if (!this.isCircular && this.carouselHasActions) {
+                    switch (arrow.dataset.type) {
+                        case 'prev':
+                            arrow.style.visibility = this.activeIndex === 0 ? 'hidden' : noStyle;
+                            break;
+                        case 'next':
+                            arrow.style.visibility = this.lastIndex - this.activeIndex < this.options.viewport[this.breakpoint] ? 'hidden' : noStyle;
+                            break;
+                    }
+                } else {
+                    arrow.style.visibility = this.carouselHasActions ? noStyle : 'hidden';
+                }
+            });
+        }
+    }
 
     toLeftByXPos(offsetX) {
         this.wrapper.classList.remove(CLASS_NOTRANSITION);
         executeAfterTransition(() => {
             let i = 0;
-            while (i < offsetX) {
-                this.wrapper.insertBefore(this.wrapper.lastElementChild, this.wrapper.firstElementChild);
-                i++;
+            if (this.isCircular) {
+                while (i < offsetX) {
+                    this.wrapper.insertBefore(this.wrapper.lastElementChild, this.wrapper.firstElementChild);
+                    i++;
+                }
             }
             this.wrapper.classList.add(CLASS_NOTRANSITION);
-            this.setWrapperCSS(CSS_TRANSFORM);
+            if (this.isCircular) this.setWrapperCSS(CSS_TRANSFORM);
             this._inTransitioning = false;
         }, this.wrapper, true);
 
         this._inTransitioning = true;
-        this.setWrapperCSS(CSS_TRANSFORM, 'translateX(' + 100 / this.options.viewport[this.breakpoint] * offsetX + '%)');
+
+        if (this.isCircular) {
+            this.translateX = this.wrapper.clientWidth / this.options.viewport[this.breakpoint] * offsetX;
+            this.setWrapperCSS(CSS_TRANSFORM, 'translateX(' + this.translateX + 'px)');
+        } else {
+            let translateXStep = (this.activeIndex - offsetX <= 0 ? 0 : offsetX - this.activeIndex);
+            this.translateX = this.wrapper.clientWidth / this.options.viewport[this.breakpoint] * translateXStep;
+            this.setWrapperCSS(CSS_TRANSFORM, 'translateX(' + this.translateX + 'px)');
+        }
     }
 
     toRightByXPos(offsetX) {
         this.wrapper.classList.remove(CLASS_NOTRANSITION);
         executeAfterTransition(() => {
             let i = 0;
-            while (i < offsetX) {
-                this.wrapper.appendChild(this.wrapper.firstElementChild);
-                i++;
+            if (this.isCircular) {
+                while (i < offsetX) {
+                    this.wrapper.appendChild(this.wrapper.firstElementChild);
+                    i++;
+                }
             }
             this.wrapper.classList.add(CLASS_NOTRANSITION);
-            this.setWrapperCSS(CSS_TRANSFORM);
+            if (this.isCircular) this.setWrapperCSS(CSS_TRANSFORM);
             this._inTransitioning = false;
         }, this.wrapper, true);
 
         this._inTransitioning = true;
-        this.setWrapperCSS(CSS_TRANSFORM, 'translateX(-' + 100 / this.options.viewport[this.breakpoint] * offsetX + '%)');
+
+        if (this.isCircular) {
+            this.translateX = this.wrapper.clientWidth / this.options.viewport[this.breakpoint] * -offsetX;
+            this.setWrapperCSS(CSS_TRANSFORM, 'translateX(' + this.translateX + 'px)');
+        } else {
+            let translateXStep = (this.lastIndex + 1) - (this.activeIndex + offsetX) >= this.options.viewport[this.breakpoint] ?
+                this.activeIndex + offsetX :
+                (this.lastIndex + 1) - this.options.viewport[this.breakpoint];
+            this.translateX = this.wrapper.clientWidth / this.options.viewport[this.breakpoint] * -translateXStep
+            this.setWrapperCSS(CSS_TRANSFORM, 'translateX(' + this.translateX + 'px)');
+        }
     }
+
+
 
     getClonedNodesList(nodeClass) {
         return this.carouselItems.map((node) => {
@@ -297,18 +381,23 @@ class CarouselGallery {
                 this.carouselHasActions = this.lastIndex + 1 > this.options.viewport[breakpointName];
                 this.offsetX = this.options.offset[breakpointName] || this.defaultOffsetX;
 
-                if (this.carouselHasActions && !this.clonedNodes.length) {
+                if (!this.isCircular) {
+                    this.activeIndex = 0;
+                    this.translateX = 0;
+                    this.translateXonMove = 0;
+                    this.setWrapperCSS(CSS_TRANSFORM);
+                }
+
+                if (this.isCircular && this.carouselHasActions && !this.clonedNodes.length) {
                   this.prependClonedNodes()
                     .appendClonedNodes()
                 }
 
-                this.setWrapperOffsetMargin(breakpointName);
+                this.setWrapperOffsetMargin();
 
                 this.clonedNodes.forEach((node) => node.style.display = this.carouselHasActions ? noStyle : 'none');
 
-                if (this.arrows.length) {
-                    this.arrows.forEach((arrow) => arrow.style.visibility = this.carouselHasActions ? noStyle : 'hidden');
-                }
+                this.checkArrowsVisibility();
 
                 if (this.points.length) {
                     this.points.forEach((point) => point.style.visibility = this.carouselHasActions ? noStyle : 'hidden');
@@ -322,13 +411,13 @@ class CarouselGallery {
         return this;
     }
 
-    setWrapperOffsetMargin(breakpoint = "md") {
+    setWrapperOffsetMargin() {
         this.setWrapperCSS(CSS_WIDTH)
           .setWrapperCSS(CSS_MARGINLEFT);
 
         if (!this.carouselHasActions) return this;
 
-        let viewportSize = this.options.viewport[breakpoint];
+        let viewportSize = this.options.viewport[this.breakpoint];
         let carouselLength = this.carouselItems.length;
         let totalMargin = '';
 
@@ -336,7 +425,10 @@ class CarouselGallery {
 
         this.setWrapperCSS(CSS_WIDTH, 'calc(100% - (' + css.marginLeft + ' + ' + css.marginRight + '))');
 
-        if (viewportSize === carouselLength) {
+        if (!this.isCircular) {
+            totalMargin = null;
+        }
+        else if (viewportSize === carouselLength) {
             totalMargin = 'calc((100% - (' + css.marginLeft + ' + ' + css.marginRight + '))/' + -1 + ' + ' + css.marginLeft + ')';
         } else {
             totalMargin = 'calc((100% - (' + css.marginLeft + ' + ' + css.marginRight + '))/' + viewportSize + ' * ' + -carouselLength + ' + ' + css.marginLeft + ')';
