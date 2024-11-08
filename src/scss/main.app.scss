@@ -150,6 +150,14 @@ $btn-close-color:            $secondary;
 $btn-close-opacity:          1;
 $btn-close-hover-opacity:    1;
 
+$tooltip-padding-y:                 .5rem;
+$tooltip-padding-x:                 .8rem;
+$tooltip-bg:                        var(--#{$prefix}primary);
+$tooltip-font-size:                 #{math.div(15, 16)}rem;
+$tooltip-max-width:                 auto;
+$tooltip-arrow-width:               #{math.div(20, 16)}rem;
+$tooltip-arrow-height:              #{math.div(10, 16)}rem;
+
 @import "~bootstrap/scss/mixins/banner";
 @include bsBanner("");
 
@@ -172,6 +180,18 @@ body {
 @import "~bootstrap/scss/type";
 @import "~bootstrap/scss/images";
 @import "~bootstrap/scss/containers";
+
+@include media-breakpoint-up(lg) {
+  .container, [class*="container-"] {
+    --#{$prefix}gutter-x: 4vw;
+  }
+  .container,
+  .container-sm,
+  .container-md,
+  .container-lg {
+    max-width: calc(1160px + var(--#{$prefix}gutter-x));
+  }
+}
 
 @include media-breakpoint-only(sm) {
   .container-sm-thin {
@@ -288,7 +308,10 @@ body {
 @import "~bootstrap/scss/close";
 //@import "~bootstrap/scss/toasts";
 @import "~bootstrap/scss/modal";
-//@import "~bootstrap/scss/tooltip";
+@import "~bootstrap/scss/tooltip";
+.tooltip {
+  font-weight: 700;
+}
 //@import "~bootstrap/scss/popover";
 @import "~bootstrap/scss/carousel";
 .carousel-control-prev,
@@ -363,6 +386,7 @@ body {
 @import "block/head-box";
 @import "block/color-card";
 @import "block/order-box";
+@import "block/chat-box";
 
 .icon-prev:before, .icon-next:before {
   position: relative;

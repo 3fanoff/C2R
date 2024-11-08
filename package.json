@@ -14,13 +14,13 @@
   "postcss": {
     "map": false,
     "plugins": {
-      "postcss-sort-media-queries": {
-
-      }
+      "postcss-sort-media-queries": {}
     }
   },
   "dependencies": {
-    "bootstrap": "^5.3.3"
+    "bootstrap": "^5.3.3",
+    "countries-phone-masks": "^1.1.1",
+    "imask": "^7.6.1"
   },
   "devDependencies": {
     "node-sass-alias-importer": "^2.0.4",

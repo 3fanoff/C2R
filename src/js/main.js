@@ -2,6 +2,7 @@ import '@scss/main.app.scss';
 import Dropdown from 'bootstrap/js/src/dropdown';
 import Offcanvas from 'bootstrap/js/src/offcanvas';
 import CarouselGallery from "./carouselGallery";
+import IMask from 'imask';
 
 let carousels = null;
 let ltLaptop = window.matchMedia('(max-width: 939px)');
@@ -9,7 +10,7 @@ let ltLaptop = window.matchMedia('(max-width: 939px)');
 document.addEventListener('DOMContentLoaded', () => {
     if ((carousels = document.querySelectorAll('.js-carousel-gallery')).length) {
         Array.from(carousels).forEach((carousel) => {
-           new CarouselGallery(carousel).init();
+           new CarouselGallery(carousel, { circular: false, autoplay: false }).init();
         });
     }
 
@@ -52,6 +53,38 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     })
 
+    document.querySelectorAll('.js-phone-box').forEach(phoneBoxNode => {
+        const inputNode = phoneBoxNode.querySelector('input[type="tel"]');
+        const codeNode = phoneBoxNode.querySelector('[data-code]');
+        const flagNode = phoneBoxNode.querySelector('[data-flag]');
+
+        //inputNode.placeholder = '(000) 000-00-00';
+        const mask = IMask(inputNode, {
+            mask: '(###) ###-##-##',
+            placeholderChar: '9',
+            lazy: true,
+            definitions: {
+                '#': /[0-9]/
+            }
+        });
+
+        phoneBoxNode.addEventListener('click', (e) => {
+            console.log(e);
+            const dataNode = e.target.hasAttribute('data-item') ? e.target :
+                e.target.parentNode.hasAttribute('data-item') ? e.target.parentNode : null;
+            if (dataNode) {
+                let phoneMask = dataNode.dataset.mask.split(',')[0];
+
+                inputNode.placeholder = phoneMask.replace(/\#/g, '9');
+                codeNode.innerHTML = dataNode.dataset.code;
+                flagNode.style.backgroundImage = 'url("' + dataNode.dataset.flag + '")';
+
+                mask.updateOptions({
+                    mask: phoneMask
+                })
+            }
+        }, false);
+    });
 })
 
 

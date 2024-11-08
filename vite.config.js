@@ -1,6 +1,7 @@
 import {resolve} from 'path';
 import aliasImporter from 'node-sass-alias-importer';
 import handlebars from 'vite-plugin-handlebars';
+import countries from 'countries-phone-masks';
 
 //console.log(process.env);
 const basePath = process.env.GITHUB_PAGES_BASE_PATH ?? '/';
@@ -56,6 +57,9 @@ export default {
             context: {
                 title: 'C2R Logistics template',
                 iter2: [1, 2],
+                phones: countries.sort((a, b) => {
+                    return (a.iso === 'RU' || a.iso === 'BY' || a.iso === 'KZ') ? -1 : 1;
+                }),
             },
             partialDirectory: [
                 resolve(__dirname, 'src/html/fragment'),
