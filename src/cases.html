@@ -14,33 +14,53 @@
 			{{> articles baseClass='row-cols-1 row-cols-md-3 row-gap-8 row-gap-md-4'}}
 		</div>
 
-		<div class="container">
-			<div class="bg-white rounded-5 p-6 pb-8 col-md-5 ms-md-auto">
-				<div class="title-box title-box-size-1 title-box-center title-box-md-start">
-					<div class="h2">Хотите сэкономить на логистике и закупке товаров из Китая?</div>
-				</div>
-				<div class="contact-box__desc mb-4 mt-0 text-center text-md-start">
-					Оставьте заявку, и наши специалисты помогут вам найти надежных поставщиков, оптимизировать логистику
-					и значительно сократить расходы
-				</div>
-				<form class="position-relative">
-					<div class="mb-4">
-						<label for="contact-cases-input-name" class="form-label visually-hidden">Имя</label>
-						<input type="text" class="form-control form-control-lg" id="contact-cases-input-name"
-							   placeholder="Имя">
+		<div class="container-md my-7">
+			<section class="contact-box-wrap p-5 pb-8">
+				<div class="contact-box-wrap__content bg-white rounded-5 p-6 pb-8 mb-8 col-md-5 ms-md-auto">
+					<div class="title-box title-box-size-1 title-box-center title-box-md-start">
+						<div class="h2">Хотите сэкономить на логистике и закупке товаров из Китая?</div>
 					</div>
-					<div class="mb-4">
-						<label for="contact-cases-input-phone" class="form-label visually-hidden">Телефон</label>
-						<input type="text" class="form-control form-control-lg" id="contact-cases-input-phone"
-							   placeholder="+7 (999) 999-99-99">
+					<div class="contact-box__desc mb-4 mt-0 text-center text-md-start">
+						Оставьте заявку, и наши специалисты помогут вам найти надежных поставщиков, оптимизировать логистику
+						и значительно сократить расходы
 					</div>
-					<button type="submit" class="btn btn-secondary btn-lg w-100" aria-describedby="contact-cases-submit-help">
-						Позвоните мне
-					</button>
-					<div id="contact-cases-submit-help" class="contact-box__form-text form-text text-center">Нажимая на кнопку, вы
-						соглашаетесь с <a href="#">политикой конфиденциальности</a></div>
-				</form>
-			</div>
+					<form class="position-relative">
+						<div class="mb-4">
+							<label for="contact-cases-input-name" class="form-label visually-hidden">Имя</label>
+							<input type="text" class="form-control form-control-lg" id="contact-cases-input-name"
+								   placeholder="Имя">
+						</div>
+						<div class="mb-4 phone-box dropdown js-phone-box">
+							<label for="contact-cases-input-phone" class="form-label visually-hidden">Телефон</label>
+							<input type="text" class="phone-box__input form-control form-control-lg" id="contact-cases-input-phone"
+								   placeholder="(999) 999-99-99">
+							<span class="phone-box-wrapper" data-bs-toggle="dropdown">
+								<span class="phone-box__flag" data-flag style="background-image: url('https://cdn.kcak11.com/CountryFlags/countries/ru.svg')"></span>
+								<span class="phone-box__arrow"></span>
+								<span class="phone-box__code" data-code>+7</span>
+							</span>
+							<ul class="phone-box-list dropdown-menu">
+								{{#each phones}}
+								<li class="dropdown-item phone-box-list__item" data-mask="{{mask}}"
+									data-code="{{code}}" data-flag="{{flag}}" data-item>
+									<span>{{name}}</span>
+									<span>{{code}} <img src="{{flag}}" width="18" height="13" alt="{{iso}}" loading="lazy"></span>
+								</li>
+								{{/each}}
+							</ul>
+						</div>
+						<button type="submit" class="btn btn-secondary btn-lg w-100" aria-describedby="contact-cases-submit-help">
+							Позвоните мне
+						</button>
+						<div id="contact-cases-submit-help" class="contact-box__form-text form-text text-center">Нажимая на кнопку, вы
+							соглашаетесь с <a href="#">политикой конфиденциальности</a></div>
+					</form>
+				</div>
+				<div class="contact-box-wrap__bg">
+					<img src="images/content/posrednik-page.jpg" alt="contact" loading="lazy" decoding="async" width="1680" height="629">
+				</div>
+			</section>
+
 
 		</div>
 

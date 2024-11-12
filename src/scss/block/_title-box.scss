@@ -1,9 +1,9 @@
 @use "sass:math";
 
 .title-box {
-    --cs-title-fs: #{math.div(24, 16)}rem;
+    --cs-title-fs: #{math.div(21, 16)}rem;
     --cs-title-lh: 1.1;
-    --cs-desc-fs: #{math.div(14, 16)}rem;
+    --cs-desc-fs: #{math.div(12, 16)}rem;
     --cs-desc-maxw: 600px;
 
     --cs-title-color: #{$dark};

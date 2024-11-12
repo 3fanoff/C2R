@@ -2,12 +2,12 @@
 
 .main-card {
     --cs-main-card-span-color: #{$primary};
-    --cs-main-card-h1-fs: #{math.div(40, 16)}em;
+    --cs-main-card-h1-fs: #{math.div(37, 16)}em;
     --cs-main-card-h2-fs: #{math.div(18, 16)}em;
 
     border-radius: 30px;
-    padding: 60px 10px 0;
-    min-height: 900px;
+    padding: 16px 14px 0;
+    min-height: calc(90vw * 1.66);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 30% bottom;
@@ -44,8 +44,8 @@
 
     &[data-about] {
         background:
-                url("@images/about/bg-right.png") right bottom / auto 100% no-repeat,
-                url("@images/about/bg-left.svg") left top no-repeat,
+                url("@images/about/bg-right__xs.png") right bottom / auto 100% no-repeat,
+                url("@images/about/bg-left.png") left -12%/70% no-repeat,
                 url("@images/about/bg-1.jpg") center / cover no-repeat;
     }
 
@@ -53,6 +53,14 @@
         --cs-main-card-x: 1.5em;
 
         font-size: calc(var(--cs-main-card-x) * (var(--view-width) / var(--cs-breakpoint-max)));
+    }
+
+    @include media-breakpoint-only(xs) {
+        &[data-zoom="xs"] {
+            --cs-main-card-x: 1.2em;
+
+            font-size: calc(var(--cs-main-card-x) * (var(--view-width) / var(--cs-breakpoint-max)));
+        }
     }
 
     @include media-breakpoint-up(sm) {
@@ -95,6 +103,13 @@
 
         &[data-zoom="from-xs"] {
             --cs-main-card-x: 1.1em;
+        }
+
+        &[data-about] {
+            background:
+                    url("@images/about/bg-right.png") right bottom / auto 100% no-repeat,
+                    url("@images/about/bg-left.png") left top no-repeat,
+                    url("@images/about/bg-1.jpg") center / cover no-repeat;
         }
     }
 

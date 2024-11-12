@@ -1,15 +1,27 @@
 <section class="articles articles-carousel overflow-x-hidden bg-dark py-6">
 
-	<div class="container title-box title-box-sm-center title-box-light my-7" data-zoom="xs">
+	<div class="container title-box title-box-sm-center title-box-light my-4 my-sm-7" data-zoom="xs">
 		<div class="h2">Статьи о бизнесе с Китаем</div>
 		<p>Здесь много полезного для тех, кто интересуется закупками товаров из Китая и их выгодной продажей. А также
 			найдете много советов, лайфхаков и схем заработка, даже если просто хотите посмотреть.</p>
 	</div>
-
+	<div class="container d-flex d-md-none justify-content-end">
+		<svg role="presentation" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 300" height="42" width="42">
+			<rect class="h-scroll-icon-card" x="480" width="200" height="200" rx="5"
+				  fill="rgba(255,255,255,0.2)"></rect>
+			<rect class="h-scroll-icon-card" y="0" width="200" height="200" rx="5"
+				  fill="rgba(255,255,255,0.2)"></rect>
+			<rect class="h-scroll-icon-card" x="240" width="200" height="200" rx="5"
+				  fill="rgba(255,255,255,0.2)"></rect>
+			<path class="h-scroll-icon-hand"
+				  d="M78.9579 285.7C78.9579 285.7 37.8579 212.5 20.5579 180.8C-2.44209 138.6 -6.2422 120.8 9.6579 112C19.5579 106.5 33.2579 108.8 41.6579 123.4L61.2579 154.6V32.3C61.2579 32.3 60.0579 0 83.0579 0C107.558 0 105.458 32.3 105.458 32.3V91.7C105.458 91.7 118.358 82.4 133.458 86.6C141.158 88.7 150.158 92.4 154.958 104.6C154.958 104.6 185.658 89.7 200.958 121.4C200.958 121.4 236.358 114.4 236.358 151.1C236.358 187.8 192.158 285.7 192.158 285.7H78.9579Z"
+				  fill="rgba(255,255,255,1)"></path>
+		</svg>
+	</div>
 	<div class="container-md cs-carousel js-carousel-gallery"
-		 data-options='{"viewport":{"lg": 3, "md": 3, "sm": 2, "xs": 1}}'>
+		 data-options='{"viewport":{"lg": 3, "md": 3, "sm": 3, "xs": 1}}'>
 		<div class="cs-carousel__inner backdrop">
-			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 cs-carousel__wrap _gx-5 js-carousel-gallery__wrap">
+			<div class="row row-cols-1 row-cols-sm-3 row-cols-md-3 cs-carousel__wrap g-3 g-md-5 js-carousel-gallery__wrap">
 				<div class="col cs-carousel__item js-carousel-gallery__item">
 					<article class="article article--rounded">
 						<span class="article__label">Доставка</span>
@@ -86,11 +98,11 @@
 				</div>
 			</div>
 		</div>
-		<button class="carousel-control-prev js-carousel-gallery__arrow" type="button" data-type="prev">
+		<button class="carousel-control-prev js-carousel-gallery__arrow d-none d-md-flex" type="button" data-type="prev">
 			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 			<span class="visually-hidden">Предыдущий</span>
 		</button>
-		<button class="carousel-control-next js-carousel-gallery__arrow" type="button" data-type="next">
+		<button class="carousel-control-next js-carousel-gallery__arrow d-none d-md-flex" type="button" data-type="next">
 			<span class="carousel-control-next-icon" aria-hidden="true"></span>
 			<span class="visually-hidden">Следующий</span>
 		</button>
