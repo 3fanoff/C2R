@@ -54,6 +54,7 @@
         margin-right: 1rem;
         opacity: .85;
         transition: opacity .1s linear;
+        zoom: .85;
 
         &-arrow {
             position: absolute;
@@ -120,6 +121,12 @@
                 }
                 transform: translateY(#{'-#{$translateY}%'});
             }
+        }
+    }
+
+    @include media-breakpoint-up(sm) {
+        &__tooltip {
+            zoom: 1;
         }
     }
 }

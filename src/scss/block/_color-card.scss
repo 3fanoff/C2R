@@ -24,18 +24,33 @@
     }
 
     &__text {
-        font-size: #{math.div(15, 16)}rem;
-        font-weight: 500;
+        font-size: #{math.div(14.5, 16)}rem;
+        font-weight: 400;
+        line-height: 1.35;
         margin: 16px 30px 30px;
     }
 
     &__icon {
-        margin: 30px 30px 0;
+        margin: 16px 16px 0;
+        display: flex;
     }
 
     &[data-fx] {
         #{$color-card}-wrapper {
             border: 1px solid $light;
+        }
+    }
+
+    @include media-breakpoint-up(sm) {
+        &__text {
+            font-size: #{math.div(15, 16)}rem;
+            font-weight: 500;
+        }
+    }
+
+    @include media-breakpoint-up(md) {
+        &__icon {
+            margin: 30px 30px 0;
         }
     }
 }

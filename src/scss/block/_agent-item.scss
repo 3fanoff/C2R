@@ -1,0 +1,17 @@
+.agent-item {
+    text-align: center;
+    font-size: .85em;
+
+    img {
+        width: 100%;
+        height: auto;
+    }
+
+    p {
+        font-weight: 600;
+    }
+
+    @include media-breakpoint-up(lg) {
+        font-size: 1em;
+    }
+}

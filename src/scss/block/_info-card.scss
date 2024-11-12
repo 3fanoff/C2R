@@ -3,24 +3,25 @@
 .info-card {
     $cs-info-card-arrow:      url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#FFF'><path d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/></svg>");
 
-    --cs-infocard-base-font-size: 1.3em;
-    --cs-infocard-arrow-position: right center;
+    --cs-infocard-base-fs: 1.3em;
+    --cs-infocard-title-fs: 1.9em;
+    --cs-infocard-arrow-position: right top;
 
     position: relative;
-    font-size: calc(var(--cs-infocard-base-font-size) * (var(--view-width) / var(--cs-breakpoint-max)));
+    font-size: calc(var(--cs-infocard-base-fs) * (var(--view-width) / var(--cs-breakpoint-max)));
     display: block;
     border-radius: 20px;
     overflow: hidden;
 
     &__title {
-        font-size: #{math.div(22, 16)}em;
+        font-size: var(--cs-infocard-title-fs);
         font-weight: 700;
         text-transform: uppercase;
         line-height: 1.35;
 
         position: absolute;
-        left: 6%;
-        top: 4%;
+        left: 10%;
+        top: 9%;
         right: 6%;
         z-index: 2;
 
@@ -28,6 +29,7 @@
         background-position: var(--cs-infocard-arrow-position);
         background-repeat: no-repeat;
         background-size: #{math.div(20, 16)}em;
+        padding-right: #{math.div(20, 16)}em;
     }
 
     &__img {
@@ -42,12 +44,18 @@
     }
 
     @include media-breakpoint-up(sm) {
-        --cs-infocard-base-font-size: 1.5em;
+        --cs-infocard-base-fs: 1.5em;
     }
 
     @include media-breakpoint-up(md) {
-        --cs-infocard-base-font-size: 1em;
-        --cs-infocard-arrow-position: right top;
+        --cs-infocard-base-fs: 1em;
+        --cs-infocard-title-fs: #{math.div(22, 16)}em;
+        //--cs-infocard-arrow-position: right top;
+
+        &__title {
+            left: 6%;
+            top: 4%;
+        }
     }
 
     @include media-breakpoint-up(lg) {

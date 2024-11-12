@@ -89,7 +89,11 @@
         background-repeat: no-repeat;
         background-size: contain;
         background-position: center;
-        padding-bottom: 80%;
+        padding-bottom: 60%;
+    }
+
+    &__bg {
+        @extend .fit-bg;
     }
 
     &-attr {
@@ -111,7 +115,7 @@
                 background-color: $light;
                 height: 2px;
                 opacity: .5;
-                width: calc(100% - var(--bs-gutter-x));
+                width: 100%;
             }
         }
 

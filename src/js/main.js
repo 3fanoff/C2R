@@ -3,6 +3,7 @@ import Dropdown from 'bootstrap/js/src/dropdown';
 import Offcanvas from 'bootstrap/js/src/offcanvas';
 import CarouselGallery from "./carouselGallery";
 import IMask from 'imask';
+import LazyLoad from './lazyload.js';
 
 let carousels = null;
 let ltLaptop = window.matchMedia('(max-width: 939px)');
@@ -13,6 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
            new CarouselGallery(carousel, { circular: false, autoplay: false }).init();
         });
     }
+
+    new LazyLoad(document.querySelectorAll('.js-lazyimg'));
 
     document.querySelectorAll('.js-dropdown-toggle').forEach(element => {
         let dropdownTimer;
