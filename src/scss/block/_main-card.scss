@@ -38,6 +38,11 @@
         text-transform: uppercase;
     }
 
+    &__btn-lg {
+        --#{$prefix}btn-font-size: 0.875em;
+        --#{$prefix}btn-font-weight: 500;
+    }
+
     &[data-span="alt"] {
         --cs-main-card-span-color: #{$secondary};
     }
