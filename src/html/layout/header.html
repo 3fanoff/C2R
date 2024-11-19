@@ -1,9 +1,11 @@
 <script type="text/javascript">
     (function (doc) {
-        var minWidth = Math.min(doc.documentElement.clientWidth, 1600);
+        console.log(window.devicePixelRatio);
+        var minWidth = Math.min(doc.documentElement.clientWidth, 1600 / window.devicePixelRatio);
         doc.body.style.setProperty('--view-width', minWidth);
         window.addEventListener('resize', () => {
-            minWidth = Math.min(doc.documentElement.clientWidth, 1600);
+            console.log(window.devicePixelRatio);
+            minWidth = Math.min(doc.documentElement.clientWidth, 1600 / window.devicePixelRatio);
             doc.body.style.setProperty('--view-width', minWidth);
         })
 	})(document);
