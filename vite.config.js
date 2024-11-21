@@ -56,6 +56,7 @@ export default {
         handlebars({
             context: {
                 title: 'C2R Logistics template',
+                basePath,
                 iter2: [1, 2],
                 phones: countries.sort((a, b) => {
                     return (a.iso === 'RU' || a.iso === 'BY' || a.iso === 'KZ') ? -1 : 1;
