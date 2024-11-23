@@ -1,0 +1,30 @@
+# Simple workflow for deploying static content to GitHub Pages
+name: Deploy static content on FTP folder
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ['modx']
+
+jobs:
+  # Single deploy job since we're just deploying
+  FTP-Deploy-Action:
+    name: FTP-Deploy-Action
+    #environment:
+      #name: github-pages
+      #url: ${{ steps.deployment.outputs.page_url }}
+    #env:
+      #GITHUB_PAGES_BASE_PATH: "/C2R/"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2.1.0
+        with:
+          fetch-depth: 2
+      - name: FTP-Deploy-Action
+        uses: SamKirkland/FTP-Deploy-Action@3.1.1
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          port: ${{ secrets.FTP_PORT }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: /public_html/ui

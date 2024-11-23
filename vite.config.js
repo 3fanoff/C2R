@@ -10,11 +10,29 @@ export default {
     base: basePath,
     root: resolve(__dirname, 'src'),
     build: {
+        manifest: true,
         outDir: '../dist',
         target: 'es2015',
         emptyOutDir: true,
         rollupOptions: {
+            output: {
+                assetFileNames: (assetInfo) => {
+                    //console.log(assetInfo);
+                    let extType = assetInfo.name.split('.').at(1);
+                    if ('css' === extType) {
+                        return `css/[name]-[hash].css`;
+                    } else if (/png|jpe?g|svg|webp|gif|tiff|bmp|ico/i.test(extType)) {
+                        return assetInfo.originalFileName.replace('images/', 'img/');
+                    } else {
+                        extType = 'file';
+                    }
+                    return `${extType}/[name][extname]`;
+                },
+                chunkFileNames: 'js/[name]-[hash].js',
+                entryFileNames: 'js/[name]-[hash].js',
+            },
             input: {
+                build: resolve(__dirname, 'src/js/main.js'),
                 index: resolve(__dirname, 'src/index.html'),
                 about: resolve(__dirname, 'src/about.html'),
                 cases: resolve(__dirname, 'src/cases.html'),
