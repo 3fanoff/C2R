@@ -8,8 +8,8 @@ on:
 
 jobs:
   # Single deploy job since we're just deploying
-  FTP-Deploy-Action:
-    name: FTP-Deploy-Action
+  SFTP-Deploy-Action:
+    name: SFTP-Deploy-Action
     #environment:
       #name: github-pages
       #url: ${{ steps.deployment.outputs.page_url }}
@@ -17,14 +17,26 @@ jobs:
       #GITHUB_PAGES_BASE_PATH: "/C2R/"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2.1.0
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 2
-      - name: FTP-Deploy-Action
-        uses: SamKirkland/FTP-Deploy-Action@3.1.1
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm install
+      - name: Build
+        run: npm run prod
+      - name: SFTP-Deploy-Action
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
           server: ${{ secrets.FTP_SERVER }}
           port: ${{ secrets.FTP_PORT }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: /public_html/ui
+          sftp_only: true
+          remote_path: './c2rloga4.beget.tech/public_html/ui'
+          local_path: './dist'
+          delete_remote_files: false
