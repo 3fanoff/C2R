@@ -14,10 +14,10 @@ export default {
         outDir: '../dist',
         target: 'es2015',
         emptyOutDir: true,
+        assetsInlineLimit: 0,
         rollupOptions: {
             output: {
                 assetFileNames: (assetInfo) => {
-                    //console.log(assetInfo);
                     let extType = assetInfo.name.split('.').at(1);
                     if ('css' === extType) {
                         return `css/[name]-[hash].css`;
