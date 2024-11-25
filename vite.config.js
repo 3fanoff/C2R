@@ -4,7 +4,8 @@ import handlebars from 'vite-plugin-handlebars';
 import countries from 'countries-phone-masks';
 
 //console.log(process.env);
-const basePath = process.env.GITHUB_PAGES_BASE_PATH ?? '/';
+const modxBasePath = process.env.MODX_BASE_PATH ?? '/';
+const basePath = process.env.GITHUB_PAGES_BASE_PATH ?? modxBasePath;
 
 export default {
     base: basePath,

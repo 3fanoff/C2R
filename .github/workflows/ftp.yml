@@ -13,8 +13,8 @@ jobs:
     #environment:
       #name: github-pages
       #url: ${{ steps.deployment.outputs.page_url }}
-    #env:
-      #GITHUB_PAGES_BASE_PATH: "/C2R/"
+    env:
+      MODX_BASE_PATH: "/ui/dist/"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
