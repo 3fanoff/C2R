@@ -10,9 +10,18 @@
     }
 
     &__item {
-        background-size: cover;
-        background-position: center;
+        //background-size: cover;
+        //background-position: center;
         border-radius: 1em;
+        overflow: hidden;
+        position: relative;
+
+        img {
+            object-fit: cover;
+            position: absolute;
+            height: 100%;
+            width: 100%;
+        }
     }
 
     /*@include media-breakpoint-only(sm) {

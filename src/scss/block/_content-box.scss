@@ -7,6 +7,7 @@
         font-size: var(--cs-content-h2);
         margin-bottom: #{math.div(14, 16)}rem;
         max-width: 960px;
+        line-height: 1.2;
 
         & + .content-box-divider {
             margin-top: #{math.div(28, 16)}rem;
