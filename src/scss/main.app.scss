@@ -418,6 +418,14 @@ body {
   }
 }
 
+.margin-box {
+  margin-bottom: 100px;
+
+  & + .margin-box {
+    margin-top: 100px;
+  }
+}
+
 @keyframes scroll-x-to-left {
   0% {
     transform: translateX(0);
