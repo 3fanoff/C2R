@@ -4,12 +4,17 @@
     --cs-quote-author-font-size: 1.4em;
     --cs-quote-icon-width: 4em;
 
+    $selector: &;
+
     border-radius: 30px;
     font-size: calc(var(--cs-quote-base-font-size) * (var(--view-width) / var(--cs-breakpoint-max)));
-    padding: 1.4em;
-    position: relative;
-    display: flex;
-    flex-direction: column;
+
+    &__inner {
+        padding: 1.4em;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+    }
 
     &__img {
         width: 30.5vw;
@@ -57,12 +62,18 @@
         }
     }
 
+    &--right {
+
+    }
+
     @include media-breakpoint-up(sm) {
         --cs-quote-text-font-size: 1.4em;
         --cs-quote-author-font-size: 1.2em;
         --cs-quote-icon-width: 3em;
 
-        padding-left: calc(30.5vw + 1.4em * 2);
+        &__inner {
+            padding-left: calc(30.5vw + 1.4em * 2);
+        }
 
         &__img {
             position: absolute;
@@ -96,6 +107,17 @@
                 padding: 0 0 1.2rem;
             }
         }
+
+        &--right {
+            #{$selector}__inner {
+                padding-left: 1.4em;
+                padding-right: calc(30.5vw + 1.4em * 2);
+            }
+            #{$selector}__img {
+                left: auto;
+                right: 1.4em;
+            }
+        }
     }
 
     @include media-breakpoint-up(md) {
@@ -103,8 +125,11 @@
         --cs-quote-author-font-size: 1em;
         --cs-quote-icon-width: 5em;
 
-        padding-right: 3em;
         margin-top: 50px;
+
+        &__inner {
+            padding-right: 3em;
+        }
 
         &__img {
             width: auto;
@@ -127,12 +152,25 @@
                 padding-top: .35em;
             }
         }
+
+        &--right {
+            #{$selector}__inner {
+                //padding-left: 1.4em;
+                //padding-right: calc(30.5vw + 1.4em * 2);
+            }
+            #{$selector}__img {
+                //left: auto;
+                right: 2.5em;
+            }
+        }
     }
 
     @include media-breakpoint-up(lg) {
         --cs-quote-base-font-size: .95em;
 
-        padding-left: calc(25vw + 3em);
+        &__inner {
+            padding-left: calc(25vw + 3em);
+        }
 
         &__img {
             max-width: 20vw;
@@ -145,6 +183,17 @@
 
             &-desc {
                 padding-top: 0;
+            }
+        }
+
+        &--right {
+            #{$selector}__inner {
+                padding-left: 3em;
+                padding-right: calc(25vw + 3em);
+            }
+            #{$selector}__img {
+                //left: auto;
+                right: 3em;
             }
         }
     }
