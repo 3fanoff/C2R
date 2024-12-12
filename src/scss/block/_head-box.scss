@@ -82,7 +82,7 @@
         }
 
         &__list {
-            max-width: 60%;
+            //max-width: 60%;
         }
 
         &__links {
@@ -110,6 +110,14 @@
 
         & &__bg img {
             width: 100%;
+        }
+
+        &__bolt {
+            font-size: .85em;
+            img {
+                width: 1.75em;
+                height: 1.75em;
+            }
         }
     }
 

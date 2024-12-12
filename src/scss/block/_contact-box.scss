@@ -73,6 +73,10 @@
             font-size: #{math.div(40, 16)}rem;
             margin-right: -2.5rem;
         }
+
+        &-wrap__content {
+            max-width: 600px;
+        }
     }
 }
 
