@@ -1,7 +1,12 @@
 @use "sass:math";
 
 .content-box {
+    --cs-content-h1: #{math.div(36, 16)}rem;
     --cs-content-h2: #{math.div(22, 16)}rem;
+
+    h1 {
+        font-size: var(--cs-content-h1);
+    }
 
     h2 {
         font-size: var(--cs-content-h2);
@@ -20,6 +25,20 @@
         height: 3px;
         background: $secondary;
         margin-bottom: #{math.div(14, 16)}rem;
+    }
+
+    &__page {
+        font-size: #{math.div(18, 16)}rem;
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+
+        h3 {
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+        }
     }
 
     @include media-breakpoint-up(sm) {
