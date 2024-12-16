@@ -22,15 +22,20 @@
 					перезвоним, чтобы провести консультацию. Или напишите в мессенджеры
 				</div>
 				<form class="position-relative">
-					<div class="mb-4">
+					<div class="mb-4 position-relative">
 						<label for="contact-input-name" class="form-label visually-hidden">Имя</label>
-						<input type="text" class="form-control form-control-lg" id="contact-input-name"
+						<input type="text" class="form-control form-control-lg _is-invalid" id="contact-input-name"
 							   placeholder="Имя">
+						<div class="invalid-tooltip">
+							Обязательное поле
+						</div>
 					</div>
 					<div class="mb-4 phone-box dropdown js-phone-box">
+						<input type="hidden" value="" data-hidden>
 						<label for="contact-input-phone" class="form-label visually-hidden">Телефон</label>
-						<input type="tel" class="phone-box__input form-control form-control-lg" id="contact-input-phone"
+						<input type="tel" class="phone-box__input form-control form-control-lg _is-invalid" id="contact-input-phone"
 							   placeholder="(999) 999-99-99">
+						<div class="invalid-tooltip">Обязательное поле</div>
 						<span class="phone-box-wrapper" data-bs-toggle="dropdown">
 							<span class="phone-box__flag" data-flag style="background-image: url('https://cdn.kcak11.com/CountryFlags/countries/ru.svg')"></span>
 							<span class="phone-box__arrow"></span>

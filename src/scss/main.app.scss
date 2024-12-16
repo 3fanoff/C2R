@@ -158,6 +158,12 @@ $tooltip-max-width:                 auto;
 $tooltip-arrow-width:               #{math.div(20, 16)}rem;
 $tooltip-arrow-height:              #{math.div(10, 16)}rem;
 
+$form-feedback-font-size: #{math.div(13, 16)}rem;
+$form-feedback-tooltip-font-size: #{math.div(13, 16)}rem;
+$form-feedback-tooltip-padding-y: 8px;
+$form-feedback-tooltip-padding-x: 10px;
+
+
 @import "~bootstrap/scss/mixins/banner";
 @include bsBanner("");
 
@@ -250,8 +256,24 @@ body {
     border-color: transparent;
     border-bottom: $input-border-width solid $input-border-color;
   }
+}
+.invalid-tooltip {
+  box-shadow: 0 1px 20px 0 rgba(0,0,0,.2);
+  background: $light;
+  color: var(--#{$prefix}form-invalid-color);
+  margin-top: .25rem;
 
-
+  &:before {
+    content: '';
+    background: $light;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: -5px;
+    left: 20px;
+    transform: rotate(45deg);
+    z-index: -1;
+  }
 }
 
 @import "~bootstrap/scss/buttons";

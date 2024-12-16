@@ -39,7 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         element.addEventListener('mouseover', () => {
             clearTimeout(dropdownTimer);
-            console.log(dropdown);
             dropdown.show();
             //let parentCenter = dropdown._parent.offsetWidth / 2;
             //let menuCenter = dropdown._menu.offsetWidth / 2;
@@ -57,6 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const inputNode = phoneBoxNode.querySelector('input[type="tel"]');
         const codeNode = phoneBoxNode.querySelector('[data-code]');
         const flagNode = phoneBoxNode.querySelector('[data-flag]');
+        const hiddenNode = phoneBoxNode.querySelector('[data-hidden]');
 
         //inputNode.placeholder = '(000) 000-00-00';
         const mask = IMask(inputNode, {
@@ -67,9 +67,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 '#': /[0-9]/
             }
         });
+        mask.on('accept', function () {
+            hiddenNode.value = '';
+        })
+        mask.on('complete', function () {
+            hiddenNode.value = codeNode.innerHTML + ' ' + mask.value;
+        })
 
         phoneBoxNode.addEventListener('click', (e) => {
-            console.log(e);
             const dataNode = e.target.hasAttribute('data-item') ? e.target :
                 e.target.parentNode.hasAttribute('data-item') ? e.target.parentNode : null;
             if (dataNode) {
