@@ -6,6 +6,10 @@
 	{{setVar 'quiz_inputClass' 'form-control-lg'}}
 	{{setVar 'quiz_selectClass' 'form-select-lg'}}
 	{{setVar 'quiz_selectOptionClass' ''}}
+{{else if (eq classVar 'transparent')}}
+	{{setVar 'quiz_inputClass' 'form-control-no-bg form-control-lg'}}
+	{{setVar 'quiz_selectClass' 'form-select-no-bg form-select-lg'}}
+	{{setVar 'quiz_selectOptionClass' ''}}
 {{else}}
 	{{setVar 'quiz_inputClass' 'form-control-no-bg form-control-lg text-bg-primary'}}
 	{{setVar 'quiz_selectClass' 'form-select-no-bg form-select-lg text-bg-primary'}}
@@ -15,23 +19,30 @@
 <section class="quiz-form {{baseClass}}">
 	<script type="text/javascript">
         function nextQuizFieldset(currentField, nextField, progress, step) {
-            this.form.elements[currentField].classList.add('d-none');
+            /*this.form.elements[currentField].classList.add('d-none');
             this.form.elements[nextField].classList.remove('d-none');
             this.form.querySelector('.js-progress').style.width = progress;
-            this.form.querySelector('.js-progress-step').innerHTML = step;
+            this.form.querySelector('.js-progress-step').innerHTML = step;*/
 
         }
 
         function prevQuizFieldset(currentField, prevField, progress, step) {
-            this.form.elements[currentField].classList.add('d-none');
+            /*this.form.elements[currentField].classList.add('d-none');
             this.form.elements[prevField].classList.remove('d-none');
             this.form.querySelector('.js-progress').style.width = progress;
-            this.form.querySelector('.js-progress-step').innerHTML = step;
+            this.form.querySelector('.js-progress-step').innerHTML = step;*/
         }
 	</script>
-	<form class="">
-		<div class="quiz-form__step d-flex justify-content-between"><span>Заполните форму, чтобы узнать стоимость доставки</span><span
-				class="js-progress-step">1/4</span></div>
+	<form class="js-quiz-form" novalidate>
+		<div class="quiz-form__step d-flex justify-content-between">
+			<span class="icon-link">
+				{{#if (eq id 'quiz-popup')}}
+					<svg viewBox="0 0 100 100" width="20px" height="20px" style="stroke:#1a75bb;" class="d-none d-sm-block"> <rect x="27.5" y="4.1" class="rect-doc" width="56.5" height="73.5"></rect> <line class="rect-doc" x1="41.5" y1="22.1" x2="70.6" y2="22.1"></line> <line class="rect-doc" x1="41.5" y1="38.8" x2="70.6" y2="38.8"></line> <line class="rect-doc" x1="41.5" y1="55.5" x2="70.6" y2="55.5"></line> <polyline class="rect-doc" points="66.4,77.6 66.4,95.6 9.8,95.6 9.8,22.1 27.5,22.1 "></polyline> </svg>
+				{{/if}}
+				<b>Заполните форму, чтобы узнать стоимость <b data-name></b></b>
+			</span>
+			<span class="js-progress-step">1/4</span>
+		</div>
 		<div class="progress my-7" role="progressbar" aria-label="form progress" aria-valuenow="0" aria-valuemin="0"
 			 aria-valuemax="100">
 			<div class="progress-bar bg-secondary js-progress"></div>
@@ -39,17 +50,19 @@
 		<fieldset name="step-1">
 			<div class="mb-8">
 				<label for="quiz-{{id}}-input-from" class="form-label">Откуда</label>
-				<select class="form-select {{@root.quiz_selectClass}}" id="quiz-{{id}}-input-from">
+				<select class="form-select {{@root.quiz_selectClass}}" id="quiz-{{id}}-input-from" required>
 					<option value="1" class="{{@root.quiz_selectOptionClass}}">Гуанчжоу</option>
 					<option value="2" class="{{@root.quiz_selectOptionClass}}">Иу</option>
 					<option value="3" class="{{@root.quiz_selectOptionClass}}">Фошань</option>
 				</select>
+				<div class="invalid-feedback">Обязательное поле</div>
 			</div>
 			<div class="d-flex justify-content-between pt-6">
 				<button type="button" class="btn btn-light" disabled>
 					<i class="icon-prev"></i>Назад
 				</button>
-				<button type="button" class="btn btn-secondary"
+				<button type="button" class="btn btn-secondary js-next-step"
+						data-next
 						onclick="nextQuizFieldset.call(this, 'step-1', 'step-2', '25%', '2/4');">
 					Далее<i class="icon-next"></i>
 				</button>
@@ -60,14 +73,18 @@
 				<label for="quiz-{{id}}-input-to" class="form-label">Куда</label>
 				<input type="text" class="form-control {{@root.quiz_inputClass}}"
 					   id="quiz-{{id}}-input-to"
+					   required
 					   placeholder="Москва">
+				<div class="invalid-feedback">Обязательное поле</div>
 			</div>
 			<div class="d-flex justify-content-between pt-6">
 				<button type="button" class="btn btn-light"
+						data-prev
 						onclick="prevQuizFieldset.call(this, 'step-2', 'step-1', '0%', '1/4');">
 					<i class="icon-prev"></i>Назад
 				</button>
 				<button type="button" class="btn btn-secondary"
+						data-next
 						onclick="nextQuizFieldset.call(this, 'step-2', 'step-3', '50%', '3/4');">
 					Далее<i class="icon-next"></i>
 				</button>
@@ -76,7 +93,7 @@
 		<fieldset name="step-3" class="d-none">
 			<div class="mb-8">
 				<label for="quiz-{{id}}-input-type" class="form-label">Вид товара</label>
-				<select class="form-select {{@root.quiz_selectClass}}" id="quiz-{{id}}-input-type">
+				<select class="form-select {{@root.quiz_selectClass}}" id="quiz-{{id}}-input-type" required>
 					<option value="1" class="{{@root.quiz_selectOptionClass}}">Электроника без АКБ</option>
 					<option value="2" class="{{@root.quiz_selectOptionClass}}">Электроника с АКБ</option>
 					<option value="3" class="{{@root.quiz_selectOptionClass}}">Обувь, одежда, сумки</option>
@@ -91,13 +108,16 @@
 					<option value="12" class="{{@root.quiz_selectOptionClass}}">Видеокарты</option>
 					<option value="13" class="{{@root.quiz_selectOptionClass}}">Другое</option>
 				</select>
+				<div class="invalid-feedback">Обязательное поле</div>
 			</div>
 			<div class="d-flex justify-content-between pt-6">
 				<button type="button" class="btn btn-light"
+						data-prev
 						onclick="prevQuizFieldset.call(this, 'step-3', 'step-2', '25%', '2/4');">
 					<i class="icon-prev"></i>Назад
 				</button>
 				<button type="button" class="btn btn-secondary"
+						data-next
 						onclick="nextQuizFieldset.call(this, 'step-3', 'step-4', '75%', '4/4');">
 					Далее<i class="icon-next"></i>
 				</button>
@@ -107,15 +127,19 @@
 			<div class="mb-8">
 				<label for="quiz-{{id}}-input-sizes" class="form-label">Габариты груза</label>
 				<input type="text" class="form-control {{@root.quiz_inputClass}}"
+					   required
 					   id="quiz-{{id}}-input-sizes"
 					   placeholder="Длина, см / Ширина, см / Высота, см / Масса, кг">
+				<div class="invalid-feedback">Обязательное поле</div>
 			</div>
 			<div class="d-flex justify-content-between pt-6">
 				<button type="button" class="btn btn-light"
+						data-prev
 						onclick="prevQuizFieldset.call(this, 'step-4', 'step-3', '50%', '3/4');">
 					<i class="icon-prev"></i>Назад
 				</button>
 				<button type="button" class="btn btn-secondary"
+						data-next
 						onclick="nextQuizFieldset.call(this, 'step-4', 'step-5', '100%', '4/4');">
 					Последний вопрос<i class="icon-next"></i>
 				</button>
@@ -126,13 +150,17 @@
 				<label for="quiz-{{id}}-input-name" class="form-label visually-hidden">Имя</label>
 				<input type="text" class="form-control {{@root.quiz_inputClass}}"
 					   id="quiz-{{id}}-input-name"
+					   required
 					   placeholder="Имя">
+				<div class="invalid-feedback">Обязательное поле</div>
 			</div>
 			<div class="mb-6">
 				<label for="quiz-{{id}}-input-phone" class="form-label visually-hidden">Телефон</label>
 				<input type="text" class="form-control {{@root.quiz_inputClass}}"
 					   id="quiz-{{id}}-input-phone"
+					   required
 					   placeholder="+7 (999) 999-99-99">
+				<div class="invalid-feedback">Обязательное поле</div>
 			</div>
 			<div class="mb-8">
 				<label for="quiz-{{id}}-input-tg" class="form-label visually-hidden">Ник в Телеграм</label>
@@ -142,6 +170,7 @@
 			</div>
 			<div class="d-flex justify-content-between pt-6">
 				<button type="button" class="btn btn-light"
+						data-prev
 						onclick="prevQuizFieldset.call(this, 'step-5', 'step-4', '75%', '4/4');">
 					<i class="icon-prev"></i>Назад
 				</button>

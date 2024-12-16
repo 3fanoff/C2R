@@ -1,8 +1,10 @@
 import '@scss/main.app.scss';
 import Dropdown from 'bootstrap/js/src/dropdown';
+import Modal from 'bootstrap/js/src/modal';
 import Offcanvas from 'bootstrap/js/src/offcanvas';
 import CarouselGallery from "./carouselGallery";
 import IMask from 'imask';
+import QuizActions from "./QuizActions.js";
 
 let carousels = null;
 let ltLaptop = window.matchMedia('(max-width: 939px)');
@@ -90,6 +92,22 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }, false);
     });
+
+    document.querySelectorAll('.js-quiz-form').forEach(quizFormNode => {
+        new QuizActions(quizFormNode);
+    });
+
+    document.querySelectorAll('.modal').forEach(modalNode => {
+        modalNode.addEventListener('show.bs.modal', e => {
+            const nameNode = modalNode.querySelector('[data-name]');
+            if (nameNode) {
+                nameNode.innerHTML = '';
+            }
+            if (e.relatedTarget && e.relatedTarget.dataset.name) {
+                nameNode.innerHTML = e.relatedTarget.dataset.name;
+            }
+        })
+    })
 })
 
 

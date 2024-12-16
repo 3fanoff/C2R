@@ -3,8 +3,11 @@
 .quiz-form {
     $quizform: &;
 
+    --cs-quiz-form-padding-x: 1.5rem;
+    --cs-quiz-form-padding-y: 1.5rem;
+
     border-radius: 20px;
-    padding: 1.5rem;
+    padding: var(--cs-quiz-form-padding-y) var(--cs-quiz-form-padding-x);
     box-shadow: 0 0 10px rgba(0,0,0,.3);
 
     &__step {
@@ -17,11 +20,26 @@
         }
     }
 
+    &-modals {
+        box-shadow: none;
+
+        .progress {
+            --#{$prefix}progress-height: 5px;
+
+            margin-right: calc(var(--cs-quiz-form-padding-x)* -1);
+            margin-left: calc(var(--cs-quiz-form-padding-x)* -1);
+        }
+
+        .form-control-no-bg {
+            padding-left: $input-padding-x-lg;
+        }
+    }
+
     label {
         font-size: #{math.div(18, 16)}rem;
     }
 
-    .form-control-no-bg::placeholder {
+    .form-control-no-bg.text-bg-primary::placeholder {
         color: rgba($light, .6);
     }
 
@@ -40,6 +58,7 @@
     }
 
     @include media-breakpoint-up(sm) {
-        padding: 2rem 2.5rem;
+        --cs-quiz-form-padding-x: 2.5rem;
+        --cs-quiz-form-padding-y: 2rem;
     }
 }

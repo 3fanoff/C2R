@@ -111,6 +111,7 @@ $icon-link-gap:               .5rem;
 
 //$form-select-indicator: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' fill='#000000' viewBox='0 0 24 24'><path d='M6.5,8.5l6,7l6-7H6.5z'/></svg>");
 $form-select-indicator: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#FFF'><polygon points='8,11 3,6 13,6'/></svg>");//fill='transparent' filter='invert(100%)'
+$form-select-indicator-alt: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#000'><polygon points='8,11 3,6 13,6'/></svg>");//fill='transparent' filter='invert(100%)'
 $form-select-bg-size: 16px 16px;
 
 $badge-font-size:     .5em;
@@ -145,6 +146,7 @@ $dropdown-padding-y:                1rem;
 
 $offcanvas-vertical-height:         auto;
 $offcanvas-padding-y:               0;
+$offcanvas-padding-x:               $spacer;
 
 $btn-close-color:            $secondary;
 $btn-close-opacity:          1;
@@ -163,6 +165,15 @@ $form-feedback-tooltip-font-size: #{math.div(13, 16)}rem;
 $form-feedback-tooltip-padding-y: 8px;
 $form-feedback-tooltip-padding-x: 10px;
 
+$modal-content-border-radius: 20px;
+$modal-content-border-width: 0;
+$modal-inner-padding-x: 45px;
+$modal-inner-padding-y: 40px;
+$modal-inner-padding: $modal-inner-padding-y $modal-inner-padding-x;
+$modal-sm:                          620px;
+$modal-md:                          760px;
+$modal-lg:                          760px;
+$modal-xl:                          760px;
 
 @import "~bootstrap/scss/mixins/banner";
 @include bsBanner("");
@@ -217,7 +228,10 @@ body {
   $form-select-padding-x-lg: 0;
   $form-select-focus-border-color: transparent;
   $form-select-bg-position:           right $form-select-padding-x center;
-  //--#{$prefix}form-select-bg-img: #{escape-svg($form-select-indicator)};
+
+  &:not(.text-bg-primary) {
+    --#{$prefix}form-select-bg-img: #{escape-svg($form-select-indicator-alt)};
+  }
 
   padding: $form-select-padding-y $form-select-indicator-padding $form-select-padding-y $form-select-padding-x;
   background-color: $form-select-bg;
@@ -257,6 +271,20 @@ body {
     border-bottom: $input-border-width solid $input-border-color;
   }
 }
+
+.form-control-alt,
+.form-control-alt:focus {
+  height: 50px;
+  background-color: #e6e6e6;
+  border-color: #e6e6e6;
+  border-radius: .25rem;
+  box-shadow: none;
+
+  @include media-breakpoint-up(sm) {
+    height: 60px;
+  }
+}
+
 .invalid-tooltip {
   box-shadow: 0 1px 20px 0 rgba(0,0,0,.2);
   background: $light;
@@ -330,6 +358,46 @@ body {
 @import "~bootstrap/scss/close";
 //@import "~bootstrap/scss/toasts";
 @import "~bootstrap/scss/modal";
+
+.modal {
+  --#{$prefix}modal-padding: 20px;
+
+  .progress {
+    --#{$prefix}progress-height: 5px;
+  }
+
+  @include media-breakpoint-up(sm) {
+    --#{$prefix}modal-padding: #{$modal-inner-padding};
+  }
+}
+
+.modal > .btn-close {
+  $btn-close-modal-bg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/></svg>");
+  --#{$prefix}btn-close-color: #{$black};
+  --#{$prefix}btn-close-bg: #{ escape-svg($btn-close-modal-bg) };
+  --#{$prefix}btn-close-opacity: .75;
+  --#{$prefix}btn-close-hover-opacity: 1;
+  //--#{$prefix}btn-close-white-filter: #{$btn-close-white-filter};
+
+  position: fixed;
+  right: 10px;
+  top: 10px;
+  z-index: $zindex-modal+1;
+
+  @include media-breakpoint-up(sm) {
+    --#{$prefix}btn-close-color: #{$white};
+
+    width: 1.6em;
+    height: 1.6em;
+    filter: invert(1);
+  }
+}
+
+.modal-desc {
+  font-size: #{math.div(14, 16)}rem;
+  color: var(--#{$prefix}dark);
+}
+
 @import "~bootstrap/scss/tooltip";
 .tooltip {
   font-weight: 700;
@@ -423,6 +491,14 @@ body {
 }
 .icon-prev:before {
   content: "← ";
+}
+
+.rect-doc {
+  fill: none;
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-miterlimit: 10;
 }
 
 .fit-bg {
