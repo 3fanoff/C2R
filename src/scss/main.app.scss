@@ -270,6 +270,10 @@ body {
     border-color: transparent;
     border-bottom: $input-border-width solid $input-border-color;
   }
+
+  &.is-invalid:not([type="tel"]) {
+    padding-left: $input-padding-x-lg;
+  }
 }
 
 .form-control-alt,

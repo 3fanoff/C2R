@@ -21,7 +21,7 @@ export default class QuizActions {
                     case !element.disabled && element.hasAttribute('data-submit'):
                         element.addEventListener('click', () => {
                             if (self.validateStep(self.stepSize)) {
-                                formNode.submit();
+                                formNode.dispatchEvent(new Event('submit'));
                             }
                         });
                 }

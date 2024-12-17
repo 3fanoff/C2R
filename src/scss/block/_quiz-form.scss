@@ -30,9 +30,7 @@
             margin-left: calc(var(--cs-quiz-form-padding-x)* -1);
         }
 
-        .form-control-no-bg.is-invalid:not([type="tel"]) {
-            padding-left: $input-padding-x-lg;
-        }
+
     }
 
     label {
