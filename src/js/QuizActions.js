@@ -9,13 +9,6 @@ export default class QuizActions {
 
         let self = this;
 
-        formNode.addEventListener('submit', function (e) {
-            e.preventDefault();
-            if (self.validateStep(self.stepSize)) {
-                formNode.submit();
-            }
-        })
-
         this.stepNodes.forEach((fieldset, step) => {
             fieldset.querySelectorAll('button').forEach(element => {
                 switch (true) {
@@ -25,6 +18,12 @@ export default class QuizActions {
                     case !element.disabled && element.hasAttribute('data-prev'):
                         element.addEventListener('click', this.prevStep.bind(this, fieldset, step-1));
                         break;
+                    case !element.disabled && element.hasAttribute('data-submit'):
+                        element.addEventListener('click', () => {
+                            if (self.validateStep(self.stepSize)) {
+                                formNode.submit();
+                            }
+                        });
                 }
             })
         })

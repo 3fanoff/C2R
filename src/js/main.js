@@ -97,14 +97,18 @@ document.addEventListener('DOMContentLoaded', () => {
         new QuizActions(quizFormNode);
     });
 
-    document.querySelectorAll('.modal').forEach(modalNode => {
+    document.querySelectorAll('.js-modal').forEach(modalNode => {
         modalNode.addEventListener('show.bs.modal', e => {
-            const nameNode = modalNode.querySelector('[data-name]');
-            if (nameNode) {
-                nameNode.innerHTML = '';
-            }
+            const nameNodes = modalNode.querySelectorAll('[data-name]');
+
             if (e.relatedTarget && e.relatedTarget.dataset.name) {
-                nameNode.innerHTML = e.relatedTarget.dataset.name;
+                nameNodes.forEach(node => {
+                    if (node instanceof HTMLInputElement) {
+                        node.value = e.relatedTarget.dataset.name;
+                    } else {
+                        node.innerHTML = e.relatedTarget.dataset.name;
+                    }
+                })
             }
         })
     })

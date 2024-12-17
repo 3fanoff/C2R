@@ -17,22 +17,6 @@
 {{/if}}
 
 <section class="quiz-form {{baseClass}}">
-	<script type="text/javascript">
-        function nextQuizFieldset(currentField, nextField, progress, step) {
-            /*this.form.elements[currentField].classList.add('d-none');
-            this.form.elements[nextField].classList.remove('d-none');
-            this.form.querySelector('.js-progress').style.width = progress;
-            this.form.querySelector('.js-progress-step').innerHTML = step;*/
-
-        }
-
-        function prevQuizFieldset(currentField, prevField, progress, step) {
-            /*this.form.elements[currentField].classList.add('d-none');
-            this.form.elements[prevField].classList.remove('d-none');
-            this.form.querySelector('.js-progress').style.width = progress;
-            this.form.querySelector('.js-progress-step').innerHTML = step;*/
-        }
-	</script>
 	<form class="js-quiz-form" novalidate>
 		<div class="quiz-form__step d-flex justify-content-between">
 			<span class="icon-link">
@@ -62,8 +46,7 @@
 					<i class="icon-prev"></i>Назад
 				</button>
 				<button type="button" class="btn btn-secondary js-next-step"
-						data-next
-						onclick="nextQuizFieldset.call(this, 'step-1', 'step-2', '25%', '2/4');">
+						data-next>
 					Далее<i class="icon-next"></i>
 				</button>
 			</div>
@@ -79,13 +62,11 @@
 			</div>
 			<div class="d-flex justify-content-between pt-6">
 				<button type="button" class="btn btn-light"
-						data-prev
-						onclick="prevQuizFieldset.call(this, 'step-2', 'step-1', '0%', '1/4');">
+						data-prev>
 					<i class="icon-prev"></i>Назад
 				</button>
 				<button type="button" class="btn btn-secondary"
-						data-next
-						onclick="nextQuizFieldset.call(this, 'step-2', 'step-3', '50%', '3/4');">
+						data-next>
 					Далее<i class="icon-next"></i>
 				</button>
 			</div>
@@ -112,13 +93,11 @@
 			</div>
 			<div class="d-flex justify-content-between pt-6">
 				<button type="button" class="btn btn-light"
-						data-prev
-						onclick="prevQuizFieldset.call(this, 'step-3', 'step-2', '25%', '2/4');">
+						data-prev>
 					<i class="icon-prev"></i>Назад
 				</button>
 				<button type="button" class="btn btn-secondary"
-						data-next
-						onclick="nextQuizFieldset.call(this, 'step-3', 'step-4', '75%', '4/4');">
+						data-next>
 					Далее<i class="icon-next"></i>
 				</button>
 			</div>
@@ -134,13 +113,11 @@
 			</div>
 			<div class="d-flex justify-content-between pt-6">
 				<button type="button" class="btn btn-light"
-						data-prev
-						onclick="prevQuizFieldset.call(this, 'step-4', 'step-3', '50%', '3/4');">
+						data-prev>
 					<i class="icon-prev"></i>Назад
 				</button>
 				<button type="button" class="btn btn-secondary"
-						data-next
-						onclick="nextQuizFieldset.call(this, 'step-4', 'step-5', '100%', '4/4');">
+						data-next>
 					Последний вопрос<i class="icon-next"></i>
 				</button>
 			</div>
@@ -170,8 +147,7 @@
 			</div>
 			<div class="d-flex justify-content-between pt-6">
 				<button type="button" class="btn btn-light"
-						data-prev
-						onclick="prevQuizFieldset.call(this, 'step-5', 'step-4', '75%', '4/4');">
+						data-prev>
 					<i class="icon-prev"></i>Назад
 				</button>
 				<button type="submit" class="btn btn-secondary">
