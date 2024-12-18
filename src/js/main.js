@@ -2,9 +2,11 @@ import '@scss/main.app.scss';
 import Dropdown from 'bootstrap/js/src/dropdown';
 import Modal from 'bootstrap/js/src/modal';
 import Offcanvas from 'bootstrap/js/src/offcanvas';
+import Toast from 'bootstrap/js/src/toast';
 import CarouselGallery from "./carouselGallery";
 import IMask from 'imask';
 import QuizActions from "./QuizActions.js";
+import FetchIt from "./modx/FetchIt.js";
 
 let carousels = null;
 let ltLaptop = window.matchMedia('(max-width: 939px)');
@@ -111,7 +113,41 @@ document.addEventListener('DOMContentLoaded', () => {
                 })
             }
         })
-    })
+    });
+
+    FetchIt.Message = {
+        _toastBootstrap: null,
+        _toastNode: null,
+        SUCCESS_CLS: 'bg-success',
+        ERROR_CLS: 'bg-secondary',
+        createToast(state = 'success', message) {
+            if (!this._toastNode) {
+                this._toastNode = document.getElementById('toast-fetchit');
+                this._toastBootstrap = Toast.getOrCreateInstance(this._toastNode, { delay: FetchIt.DELAY });
+            }
+
+            this._toastNode.addEventListener('show.bs.toast', () => {
+                this._toastNode.classList.remove(FetchIt.Message.SUCCESS_CLS);
+                this._toastNode.classList.remove(FetchIt.Message.ERROR_CLS);
+                this._toastNode.classList.add(state === 'success' ? FetchIt.Message.SUCCESS_CLS : FetchIt.Message.ERROR_CLS);
+            }, {once: true});
+
+            this._toastNode.querySelector('[data-message]').innerText = message;
+
+            return this._toastBootstrap;
+        },
+        success(message) {
+            this.createToast('success', message).show();
+        },
+
+        error(message) {
+            this.createToast('error', message).show();
+        }
+    }
+
+    document.head.querySelectorAll('script[data-fetchit-config]').forEach((script) => {
+        FetchIt.create(JSON.parse(script.dataset['fetchitConfig']));
+    });
 })
 
 
