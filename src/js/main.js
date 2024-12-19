@@ -99,18 +99,44 @@ document.addEventListener('DOMContentLoaded', () => {
         new QuizActions(quizFormNode);
     });
 
-    document.querySelectorAll('.js-modal').forEach(modalNode => {
-        modalNode.addEventListener('show.bs.modal', e => {
-            const nameNodes = modalNode.querySelectorAll('[data-name]');
+    function setValueInNodes(nodes, value) {
+        nodes.forEach(node => {
+            if (node instanceof HTMLInputElement) {
+                node.value = value;
+            } else {
+                node.innerHTML = value;
+            }
+        })
+    }
 
-            if (e.relatedTarget && e.relatedTarget.dataset.name) {
-                nameNodes.forEach(node => {
-                    if (node instanceof HTMLInputElement) {
-                        node.value = e.relatedTarget.dataset.name;
-                    } else {
-                        node.innerHTML = e.relatedTarget.dataset.name;
-                    }
-                })
+    document.querySelectorAll('.js-modal').forEach(modalNode => {
+        const defaultTitle = modalNode.dataset.defaultTitle;
+        const defaultDesc = modalNode.dataset.defaultDescription;
+
+        modalNode.addEventListener('show.bs.modal', e => {
+            if (!e.relatedTarget) return;
+            if (e.relatedTarget.dataset.name) {
+                const nameNodes = modalNode.querySelectorAll('[data-name]');
+                setValueInNodes(nameNodes, e.relatedTarget.dataset.name);
+            }
+            if (e.relatedTarget.dataset.title) {
+                const titleNodes = modalNode.querySelectorAll('[data-title]');
+                setValueInNodes(titleNodes, e.relatedTarget.dataset.title);
+            }
+            if (e.relatedTarget.dataset.description) {
+                const titleNodes = modalNode.querySelectorAll('[data-decription]');
+                setValueInNodes(titleNodes, e.relatedTarget.dataset.description);
+            }
+        });
+
+        modalNode.addEventListener('hide.bs.modal', e => {
+            if (defaultTitle) {
+                const titleNodes = modalNode.querySelectorAll('[data-title]');
+                setValueInNodes(titleNodes, defaultTitle);
+            }
+            if (defaultDesc) {
+                const descNodes = modalNode.querySelectorAll('[data-description]');
+                setValueInNodes(descNodes, defaultDesc);
             }
         })
     });

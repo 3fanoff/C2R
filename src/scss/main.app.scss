@@ -289,6 +289,11 @@ body {
   }
 }
 
+textarea[class*="form-control"],
+textarea[class*="form-control"]:focus {
+  height: auto;
+}
+
 .invalid-tooltip {
   box-shadow: 0 1px 20px 0 rgba(0,0,0,.2);
   background: $light;

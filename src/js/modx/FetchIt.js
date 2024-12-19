@@ -16,6 +16,7 @@ export default class FetchIt {
             throw new Error('Не форма');
         }
 
+        this.hideErrorsTimeout = {};
         this.form = form;
         this.config = config;
 
@@ -100,7 +101,6 @@ export default class FetchIt {
 
                         for (const [name, message] of Object.entries(response.data)) {
                             this.setError(name, message);
-
                         }
 
                         return;
@@ -201,7 +201,7 @@ export default class FetchIt {
     }
 
     setError(name, message = '') {
-        clearTimeout(this.hideErrorsTimeout);
+        clearTimeout(this.hideErrorsTimeout[name]);
         this.getFields(name).forEach(field => {
             if (this.inputInvalidClasses) {
                 field.classList.add(...this.inputInvalidClasses);
@@ -222,7 +222,7 @@ export default class FetchIt {
             error.innerHTML = message;
         });
 
-        this.hideErrorsTimeout = setTimeout(() => {
+        this.hideErrorsTimeout[name] = setTimeout(() => {
             this.getErrors(name).forEach(error => {
                 if (error.classList.contains('invalid-tooltip')) {
                     error.style.display = 'none';
