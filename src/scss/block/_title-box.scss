@@ -2,7 +2,7 @@
 
 .title-box {
     $selector: &;
-    --cs-title-fs: #{math.div(18, 16)}rem;
+    --cs-title-fs: #{math.div(21, 16)}rem;
     --cs-title-lh: 1.1;
     --cs-desc-fs: #{math.div(12, 16)}rem;
     --cs-desc-maxw: 600px;
@@ -48,13 +48,13 @@
     &#{$selector}-size-1 {
         --cs-title-fs: #{math.div(26, 16)}rem;
     }
-
+    /*
     @include media-breakpoint-only(xs) {
         &[data-zoom=xs] {
             zoom: calc(2 / (var(--cs-breakpoint-max) / var(--view-width)));
         }
     }
-
+    */
     @include media-breakpoint-up(sm) {
         --cs-title-fs: #{math.div(32, 16)}rem;
         --cs-title-lh: 1.1;

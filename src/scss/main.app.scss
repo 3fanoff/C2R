@@ -455,6 +455,7 @@ textarea[class*="form-control"]:focus {
   --cs-breakpoint-max: #{$cs-breakpoint-sm - 1};
   --cs-logo: url('@images/logo.svg');
   --cs-logo-alt: url('@images/logo-alt.svg');
+  --cs-zoom: 1;
 
   @include media-breakpoint-up(sm) {
     --cs-breakpoint-max: #{$cs-breakpoint-md - 1};
@@ -538,17 +539,24 @@ textarea[class*="form-control"]:focus {
     margin-top: var(--cs-mb-top);
   }
 
+  & + .margin-collapse {
+    margin-top: calc(var(--cs-mb-top) * -1);
+    visibility: hidden;
+  }
+
   @include media-breakpoint-up(sm) {
     --cs-mb-top: 100px;
     --cs-mb-bottom: 100px;
   }
 }
 
-.margin-box {
-  margin-bottom: 100px;
+@include media-breakpoint-only(xs) {
+  [data-zoom=xs] {
+    zoom: calc(2 / (var(--cs-breakpoint-max) / var(--view-width)));
+  }
 
-  & + .margin-box {
-    margin-top: 100px;
+  [data-zoom="xs-var"] {
+    zoom: calc(var(--cs-zoom)/ (var(--cs-breakpoint-max) / var(--view-width)));
   }
 }
 

@@ -57,6 +57,7 @@
     &[data-zoom="from-xs"] {
         --cs-main-card-x: 1.5em;
 
+        zoom: 1;
         font-size: calc(var(--cs-main-card-x) * (var(--view-width) / var(--cs-breakpoint-max)));
     }
 
@@ -64,6 +65,7 @@
         &[data-zoom="xs"] {
             --cs-main-card-x: 1.2em;
 
+            zoom: 1;
             font-size: calc(var(--cs-main-card-x) * (var(--view-width) / var(--cs-breakpoint-max)));
         }
     }
