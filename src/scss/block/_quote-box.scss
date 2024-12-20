@@ -9,6 +9,11 @@
     border-radius: 30px;
     font-size: calc(var(--cs-quote-base-font-size) * (var(--view-width) / var(--cs-breakpoint-max)));
 
+    &--small {
+        --cs-quote-base-qualif: 0.865;
+        font-size: calc(var(--cs-quote-base-qualif) * var(--cs-quote-base-font-size) * (var(--view-width) / var(--cs-breakpoint-max)));
+    }
+
     &__inner {
         padding: 1.4em;
         position: relative;
@@ -48,6 +53,7 @@
         margin-top: 1em;
         position: relative;
         z-index: 1;
+        margin-bottom: 0;
 
         &::before {
             content: "";
@@ -117,6 +123,10 @@
                 left: auto;
                 right: 1.4em;
             }
+        }
+
+        &--small {
+            --cs-quote-base-qualif: 0.665;
         }
     }
 

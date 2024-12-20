@@ -19,6 +19,7 @@
     --cs-transport-min-height: calc(100vh - var(--bs-gutter-x));
     --cs-transport-height: auto;
     --cs-transport-padding: 8% 5%;
+    --cs-transport-top-badge-fs: 0.75rem;
 
     position: sticky;
     top: 0;
@@ -81,6 +82,21 @@
         top: -1.5em;
         right: 0;
         transform: rotate(3.5deg) translateX(50%);
+
+        &-top {
+            font-size: var(--cs-transport-top-badge-fs);
+            text-transform: uppercase;
+            color: #FFF;
+            margin-bottom: -15px;
+
+            &--alt {
+                width: fit-content;
+                border-radius: 50rem;
+                padding: .5rem 1rem;
+                font-weight: 600;
+                align-self: center;
+            }
+        }
     }
 
     &__img {
@@ -239,6 +255,7 @@
         --cs-transport-attr-fs: 1.3em;
         --cs-transport-min-height: calc((100vw - var(--bs-gutter-x)) * 0.5215);
         --cs-transport-height: auto;
+        --cs-transport-top-badge-fs: 0.875rem;
 
         &__desc,
         &-attr {
@@ -269,6 +286,11 @@
 
         &-btn__item {
             font-size: var(--bs-btn-font-size);
+        }
+
+        &__badge-top {
+            margin-bottom: 10px;
+            align-self: start;
         }
 
         &__inner {

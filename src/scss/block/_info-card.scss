@@ -56,6 +56,10 @@
             left: 6%;
             top: 4%;
         }
+
+        &--thin &__title {
+            left: 10%;
+        }
     }
 
     @include media-breakpoint-up(lg) {
