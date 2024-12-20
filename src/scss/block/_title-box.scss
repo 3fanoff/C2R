@@ -1,6 +1,7 @@
 @use "sass:math";
 
 .title-box {
+    $selector: &;
     --cs-title-fs: #{math.div(18, 16)}rem;
     --cs-title-lh: 1.1;
     --cs-desc-fs: #{math.div(12, 16)}rem;
@@ -44,7 +45,7 @@
         align-items: center;
     }
 
-    &-size-1 {
+    &#{$selector}-size-1 {
         --cs-title-fs: #{math.div(26, 16)}rem;
     }
 
@@ -64,7 +65,7 @@
             align-items: center;
         }
 
-        &-size-1 {
+        &#{$selector}-size-1 {
             --cs-title-fs: #{math.div(30, 16)}rem;
         }
 
@@ -83,7 +84,7 @@
             align-items: flex-start;
         }
 
-        &-size-1 {
+        &#{$selector}-size-1 {
             --cs-title-fs: #{math.div(38, 16)}rem;
         }
     }
